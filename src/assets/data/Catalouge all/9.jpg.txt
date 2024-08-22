@@ -1,0 +1,35 @@
+
+UEC 1005 CI TENSILE STRENGTH TESTER - VERTICLE (KEYPAD OPERATED & LCD DISPLAY)
+
+This Vertical Tensile Tester provides rapid and efficient determination of Tensile Strength, Stretch (Elongation), Elongation Percentage & Breaking Length (BL) of Paper, Tissue Paper and Paperboard in its Wet or Dry State. The unit is Microprocessor Based with LCD Display and operational through Key Pad. The Equipment is provided with the standard Load Cell and "Sample Clamping Jaws" of 15mm Size.
+Extra on Demand:
+"Sample Preparation Cutter (Sample Size 15mm/25mm OR 50mm X 300mm)"
+"Sample Clamping Jaws of 25mm OR 50mm Size"
+"Load Cell of different capacity 50/100 Kg f. (500/1000 N)"
+"Standard Calibration Check Weights"
+"Thermal Printer to Print the Instant Test Data"
+"Special Dedicated Window Based Software to Interface the
+Main Unit with Computer & Printer"
+"Finch Device for Wet Tensile Test"
+Applicable Standards: SCAN P 38, SCAN P 67, TAPPI T494,TAPPI T541, CPPA D.34, ISO 1924/2, BS 4415, DIN 53112, APPITA / AS 1301.448, JIS P 8115, FINAT
+FRA WARENA.PRW
+Dimensions: 82 x 40.5 x 106 cm.
+Weight: 96 kg.
+
+UEC 1005 C II TENSILE STRENGTH TESTER - VERTICLE (TOUCH SCREEN OPERATED)
+
+This Vertical Tensile Tester is used for rapid and efficient determination of Tensile Strength, Stretch (Elongation), Elongation Percentage & Breaking Length (BL) of Paper, Tissue Paper and paperboard in its Wet or Dry State. The unit is Microprocessor Based, HMI controlled and operational through Touch Screen. The Equipment is provided with the standard Load Cell and "Sample Clamping Jaws" of 15mm Size.
+Extra on Demand:
+"Sample Preparation Cutter (Sample Size 15mm/25mm OR 50mm X 300mm)"
+"Sample Clamping Jaws of 25mm OR 50mm Size"
+"Load Cell of different capacity 50/100 Kg f. (500/1000 N)"
+"Standard Calibration Check Weights"
+"Thermal Printer to Print the Instant Test Data"
+"Special Dedicated Window Based Software to Interface the
+"Main Unit with Computer & Printer"
+"Finch Device for Wet Tensile Test"
+
+Applicable Standards: SCAN P 38,SCAN P 67,
+TAPPI T494,TAPPI T541, CPPA D.34, ISO 1924/2, BS 4415, DIN 53112, APPITA/AS 1301.448, JIS P 8115, FINAT
+Dimensions: 82 x 40.5 x 106 cm.
+Weight: 96.6 Kg.
