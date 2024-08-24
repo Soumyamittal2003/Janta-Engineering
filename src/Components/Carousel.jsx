@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
+import image1 from "../assets/photo/front1.jpg";
+import image2 from "../assets/photo/front2.jpg";
+import image3 from "../assets/photo/front3.jpeg";
+import image4 from "../assets/photo/front4.jpg";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?cs=srgb&dl=pexels-souvenirpixels-417074.jpg&fm=jpg",
-    "https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=600&quality=80",
-    "https://www.shutterstock.com/image-photo/landscape-road-mountains-600nw-2465573769.jpg",
-    "https://t4.ftcdn.net/jpg/05/47/97/81/360_F_547978128_vqEEUYBr1vcAwfRAqReZXTYtyawpgLcC.jpg",
-    "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=",
-  ];
+  const slides = [image1, image2, image3, image4];
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) =>

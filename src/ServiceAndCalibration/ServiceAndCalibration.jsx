@@ -6,10 +6,10 @@ function ServiceAndCalibration() {
   return (
     <>
       <Navbarmenu />
-      <div className="px-10 py-10 text-2xl font-black">
+      <div className="text-center px-10 py-10 text-2xl font-black">
         SERVICE AND CALIBRATION
       </div>
-      <div className="px-20 py-10 font-medium text-lg">
+      <div className=" text-center min-h-screen px-20 py-10 font-medium text-lg">
         We are the "JANTA ENGINEERING (JE)" manufacturers and suppliers of
         "Precision Testing Instruments" mainly for testing the properties of
         Pulp, Paper and Paper Board for Paper, Conversion and Allied Industries.
