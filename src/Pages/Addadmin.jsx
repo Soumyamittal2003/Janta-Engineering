@@ -7,7 +7,7 @@ const AddAdmin = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     // Add your form submission logic here
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
@@ -20,7 +20,7 @@ const AddAdmin = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         className="bg-white p-8 rounded shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Add Admin</h2>
@@ -92,7 +92,7 @@ const AddAdmin = () => {
           type="submit"
           className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 transition-colors"
         >
-          Sign Up
+          Add Admin
         </button>
       </form>
     </div>

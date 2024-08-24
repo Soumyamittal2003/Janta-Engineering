@@ -1,10 +1,10 @@
 import React from "react";
-import Carousel from "../Components/Carousel";
 import Testimonials from "../Components/Testimonials";
-import Blogs from "../Components/Blogs";
 import Footer from "../Components/Footer";
 import { Navbarmenu } from "../Components/Navbar";
-import EquipmentCategoryDetailPage from "../Components/Productdetailpage";
+import ContactUs from "../Components/Contact";
+import Blogs from "../Components/Blogs";
+import Carousel from "../Components/Carousel";
 
 function Homepage() {
   const mockCategory = {
@@ -44,7 +44,7 @@ function Homepage() {
       </section>
       <Testimonials />
       <Blogs />
-      {/* <EquipmentCategoryDetailPage category={mockCategory} /> */}
+      <ContactUs />
       <Footer />
     </>
   );
