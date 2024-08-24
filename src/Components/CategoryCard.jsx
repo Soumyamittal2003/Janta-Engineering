@@ -15,7 +15,7 @@ const CategoryCards = () => {
     },
     {
       id: 2,
-      imageUrl: pulpTestingImage,
+      imageUrl: "",
       categoryName: "PULP TESTING EQUIPMENT",
     },
     {
