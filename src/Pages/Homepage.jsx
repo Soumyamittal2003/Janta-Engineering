@@ -5,6 +5,7 @@ import Blogs from "../Components/Blogs";
 import Footer from "../Components/Footer";
 import { Navbarmenu } from "../Components/Navbar";
 import EquipmentCategoryDetailPage from "../Components/Productdetailpage";
+import AdminProducts from "./AdminProducts";
 
 function Homepage() {
   const mockCategory = {
@@ -44,6 +45,7 @@ function Homepage() {
       </section>
       <Testimonials />
       <Blogs />
+      <AdminProducts/>
       {/* <EquipmentCategoryDetailPage category={mockCategory} /> */}
       <Footer />
     </>

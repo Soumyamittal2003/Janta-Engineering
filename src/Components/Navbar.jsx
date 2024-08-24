@@ -72,7 +72,7 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-medium px-7">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-2xl cursor-pointer"
+              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -215,7 +215,7 @@ function NavList() {
         className="font-medium"
       >
         <Link to="/product">
-          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-2xl cursor-pointer text-black px-6">
+          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
             PAGES
           </ListItem>
         </Link>
@@ -229,7 +229,7 @@ function NavList() {
       >
         <Link to="/product">
           {" "}
-          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-2xl cursor-pointer text-black px-6">
+          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
             ACCOUNT
           </ListItem>
         </Link>
@@ -243,7 +243,7 @@ function NavList() {
         className="font-medium"
       >
         <Link to="/product">
-          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-2xl cursor-pointer text-black px-6">
+          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
             DOCS
           </ListItem>
         </Link>
@@ -282,7 +282,7 @@ export function Navbarmenu() {
         {/* Desktop Contact Us Button */}
         <div className="hidden gap-2 lg:flex">
           <Link to="/contact-us">
-            <Button size="sm" color="blue" className="text-xl text-black">
+            <Button size="sm" color="blue" className="text-md text-white hover:bg-blue-600">
               CONTACT US
             </Button>
           </Link>

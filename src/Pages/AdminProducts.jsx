@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import EquipmentList from '../Components/EquipmentCard';
 
-const AddProductForm = () => {
+function AdminProducts() {
+    const [equipmentData, setEquipmentData] = useState([]);
+    const [showForm,setShowForm]= useState(false)
     const [formData, setFormData] = useState({
         productName: '',
         category: '',
@@ -52,9 +55,47 @@ const AddProductForm = () => {
         // Submit the form data
     };
 
-    return (
-        <div className="max-w-4xl mx-auto p-4 bg-white shadow-md rounded-md">
-            <h2 className="text-center text-2xl font-semibold mb-4">Add Product</h2>
+    const getEquipment = async () => {
+        try {
+            const response = await fetch('https://janta-engineering-server.onrender.com/api/v1/equipment/equipment');
+            const result = await response.json();
+            console.log(result)
+            if (result.success) {
+                setEquipmentData(result.equipment);
+            } else {
+                console.error('Failed to fetch equipment data:', result.message);
+            }
+        } catch (error) {
+            console.error('Error fetching equipment data:', error);
+        }
+    };
+
+    useEffect(() => {
+        getEquipment();
+    }, []);
+
+    async function handelEdit(id,data){
+       setShowForm(true)
+       console.log(data)
+       setFormData({
+        productName: data?.productName,
+        category: data?.category,
+        description: data?.description,
+        productCode: data?.productCode,
+        weight: data?.weight,
+        dimension: data?.dimension,
+        applicableStandards: data?.applicableStandards,
+        rangeAvailable: data?.rangeAvailable,
+        testingApplications: data?.testingApplications,
+        accessories: data?.accessories,
+        images: data?.images,
+       })
+    }
+
+    if(showForm){
+        return (
+            <div className="max-w-4xl mx-auto p-4 bg-white shadow-md rounded-md">
+            <h2 className="text-center text-2xl font-semibold mb-4">Edit Product</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="mb-4">
                     <label className="block mb-1 font-medium">Upload Images</label>
@@ -64,7 +105,7 @@ const AddProductForm = () => {
                         onChange={handleImageChange}
                         multiple
                         className="w-full border border-gray-300 p-2 rounded-md"
-                        required
+                    
                     />
                 </div>
                 <div className="flex space-x-4">
@@ -212,15 +253,39 @@ const AddProductForm = () => {
 
                 <button
                     type="submit"
+                    onClick={()=>setShowForm(false)}
                     className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
                 >
-                    Add Product
+                   Save
+                </button>
+                <button
+                    onClick={()=>setShowForm(false)}
+                    className="w-full bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
+                >
+                  Cancel
                 </button>
             </form>
+          
         </div>
-    );
-};
+        )
+    }
 
-export default AddProductForm;
+    return (
+        <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {equipmentData.map((equipment) => (
+          <EquipmentList
+            key={equipment.id}
+            image={equipment.images?equipment.images[0]:""}
+            name={equipment.productName}
+            category={equipment.category}
+            uniqueCode={equipment.productCode}
+            onEdit={() => handelEdit(equipment.id,equipment)}
+          />
+        ))}
+      </div>
+    </div>
+    )
+}
 
-
+export default AdminProducts

@@ -7,8 +7,9 @@ const ProductCard = ({ product }) => {
       <Link
         to={{
           pathname: "/equipment-category",
-          state: { product },
+
         }}
+        state={{ product }}
       >
         {" "}
         <div className="md:w-5/10">
@@ -19,9 +20,9 @@ const ProductCard = ({ product }) => {
           />
         </div>
         <div className="md:w-3/10 p-4 flex flex-col justify-between">
-          <div className="text-md font-semibold">{product.category}</div>
-          <div className="text-lg font-semibold">{product.category}</div>
-          <div className="text-gray-500">Code: {product.code}</div>
+          <div className="text-lg font-semibold">{product.productName}</div>
+          <div className="text-md text-gray-600 font-semibold">{product.category}</div>
+          <div className="text-gray-500">Code: {product.productCode}</div>
         </div>
       </Link>
     </div>
