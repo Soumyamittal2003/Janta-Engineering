@@ -1,18 +1,17 @@
 import React from "react";
-import { Navbarmenu } from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
 function ContactUs() {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-    navigate("/"); // This will navigate to the previous page
+    event.preventDefault();
+    alert("This features will be available soon...");
+    navigate("/");
   };
 
   return (
     <>
-      <Navbarmenu />
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">

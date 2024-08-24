@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
           pathname: "/equipment-category",
 
         }}
-        state={{ product }}
+        state={{product}}
       >
         {" "}
         <div className="md:w-5/10">

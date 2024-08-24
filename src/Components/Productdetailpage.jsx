@@ -7,41 +7,46 @@ import Button from "./Button";
 const EquipmentCategoryDetailPage = () => {
   const location = useLocation();
   const { product } = location.state || {};
+  console.log(product)
   console.log(product, "fkmsdkfm");
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [activeTab, setActiveTab] = useState("description");
 
   const handleClick = () => {
-    alert("Button clicked!");
+    alert("This features will be available soon...");
   };
 
   const handleQuestion = () => {
-    alert("Button clicked!");
-  };
+    alert("This features will be available soon...");
+  };
 
   return (
     <>
       <Navbarmenu />
       <div className="flex flex-col h-screen">
         <div className="container mx-auto p-20 flex-grow">
+          <div className="font-bold text-gray-600 w-full p-10 mb-10 border rounded-md bg-gray-100">
+            {product.category}
+          </div>
           <div className="flex flex-col md:flex-row">
             {/* Left Side - Image Gallery */}
             <div className="md:w-1/2 flex flex-col items-center">
-              <div className="relative w-full h-96 overflow-hidden group">
+              <div className="relative w-full h-96 overflow-hidden group border rounded-md">
                 <img
                   src={selectedImage}
                   alt="Main"
-                  className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-150"
+                  className=" w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-150"
                 />
               </div>
               <div className="flex mt-4 space-x-2 overflow-x-auto">
                 {product.images.map((image, index) => (
                   <div
                     key={index}
-                    className={`w-20 h-20 overflow-hidden border cursor-pointer ${selectedImage === image
-                      ? "border-blue-500"
-                      : "border-gray-300"
-                      }`}
+                    className={`w-20 h-20 overflow-hidden border rounded-sm cursor-pointer ${
+                      selectedImage === image
+                        ? "border-blue-500"
+                        : "border-gray-300"
+                    }`}
                     onClick={() => setSelectedImage(image)}
                   >
                     <img
@@ -61,26 +66,29 @@ const EquipmentCategoryDetailPage = () => {
               </h1>
               <div className="border-b border-gray-300">
                 <button
-                  className={`py-2 px-4 font-bold text-gray-600 ${activeTab === "description"
-                    ? "border-b-2 border-blue-500"
-                    : ""
-                    }`}
+                  className={`py-2 px-4 font-bold text-gray-600 ${
+                    activeTab === "description"
+                      ? "border-b-2 border-blue-500"
+                      : ""
+                  }`}
                   onClick={() => setActiveTab("description")}
                 >
                   Description
                 </button>
                 <button
-                  className={`py-2 px-4 font-bold text-gray-600${activeTab === "details" ? "border-b-2 border-blue-500" : ""
-                    }`}
+                  className={`py-2 px-4 font-bold text-gray-600${
+                    activeTab === "details" ? "border-b-2 border-blue-500" : ""
+                  }`}
                   onClick={() => setActiveTab("details")}
                 >
                   Details
                 </button>
                 <button
-                  className={`py-2 px-4 font-bold text-gray-600${activeTab === "consumables"
-                    ? "border-b-2 border-blue-500"
-                    : ""
-                    }`}
+                  className={`py-2 px-4 font-bold text-gray-600${
+                    activeTab === "consumables"
+                      ? "border-b-2 border-blue-500"
+                      : ""
+                  }`}
                   onClick={() => setActiveTab("consumables")}
                 >
                   Consumables
@@ -89,7 +97,14 @@ const EquipmentCategoryDetailPage = () => {
 
               <div className="mt-4">
                 {activeTab === "description" && (
+                  <>
                   <p className="text-gray-700">{product.description}</p>
+                  {
+                    product?.extras && <p className="text-gray-700 pt-10">{product.extras}</p>
+                  }
+                  </>
+                  
+                  
                 )}
                 {activeTab === "details" && (
                   <table className="w-full text-left">
@@ -145,16 +160,16 @@ const EquipmentCategoryDetailPage = () => {
                 )}
               </div>
               <div className="mt-20 flex justify-start items-center">
-                <div className="flex justify-between w-1/2">
+                <div className="flex justify-between w-full">
                   <Button
                     onClick={handleClick}
-                    className="bg-green-500 hover:bg-green-800"
+                    className="bg-green-500 hover:bg-green-600"
                   >
                     SEND AN ENQUIRY
                   </Button>
                   <Button
                     onClick={handleQuestion}
-                    className="bg-yellow-400 hover:bg-yellow-700"
+                    className="bg-yellow-400 hover:bg-yellow-500"
                   >
                     ASK A QUESTION
                   </Button>
