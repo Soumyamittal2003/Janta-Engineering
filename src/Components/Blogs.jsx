@@ -1,61 +1,62 @@
 import React from "react";
+import image1 from "../assets/photo/1.jpg";
+import image2 from "../assets/photo/1{a}.jpg";
+import image3 from "../assets/photo/1{b}.jpg";
+import image4 from "../assets/photo/2.jpg";
+import image5 from "../assets/photo/2{a}.jpg";
+import image6 from "../assets/photo/2{b}.jpg";
 
 const Blogs = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "Understanding React",
-      description: "A deep dive into the popular frontend library.",
-      image:
-        "https://www.mtt.uk.com/wp-content/uploads/2019/05/CNC-Lathe-Repair3.jpg",
-      date: "August 1, 2024",
-    },
-    {
-      id: 4,
-      title: "Responsive Design Principles",
-      description: "Make your web pages look great on any device.",
-      image:
-        "https://media.istockphoto.com/id/171347670/photo/engineering.jpg?s=612x612&w=0&k=20&c=ImhJgyLB2lhDTcZZisraOyQ4nJqs8iVCVj3_tbYgrYc=",
-      date: "August 18, 2024",
+      title: "QUADRANT SCALE",
+      description: "PHYSICAL PROPERTY TESTING EQUIPMENT",
+      image: image1,
+      date: "UEC 1001",
     },
     {
       id: 2,
-      title: "JavaScript Best Practices",
-      description: "Learn the best practices for writing clean JavaScript.",
-      image:
-        "https://media.istockphoto.com/id/1057719100/photo/young-latin-engineer-calibrating-drill.jpg?s=612x612&w=0&k=20&c=hO2XJ60cxB4krKZBoM8zB97QHQLx9tjtWGicqDoo4rk=",
-      date: "September 26, 2024",
-    },
-    {
-      id: 4,
-      title: "Responsive Design Principles",
-      description: "Make your web pages look great on any device.",
-      image:
-        "https://media.istockphoto.com/id/171347670/photo/engineering.jpg?s=612x612&w=0&k=20&c=ImhJgyLB2lhDTcZZisraOyQ4nJqs8iVCVj3_tbYgrYc=",
-      date: "August 18, 2024",
+      title: "GSM TESTER - DIGITAL BASKET TYPE",
+      description: "PHYSICAL PROPERTY TESTING EQUIPMENT",
+      image: image2,
+      date: "UEC 1002 A",
     },
     {
       id: 3,
-      title: "CSS Tricks You Should Know",
-      description: "Improve your styling with these useful CSS tricks.",
-      image:
-        "https://media.istockphoto.com/id/1363134809/photo/portrait-of-a-woman-working-in-a-factory-industry.webp?b=1&s=170667a&w=0&k=20&c=LjrLTDYSeyyLCI3KePVMBcyBVip28dArEu9MQyVarVA=",
-      date: "January 15, 2023",
+      title: "GRAMMAGE TESTER - DIGITAL",
+      description: "PHYSICAL PROPERTY TESTING EQUIPMENT",
+      image: image3,
+      date: "UEC 1002 B",
     },
     {
       id: 4,
-      title: "Responsive Design Principles",
-      description: "Make your web pages look great on any device.",
-      image:
-        "https://media.istockphoto.com/id/171347670/photo/engineering.jpg?s=612x612&w=0&k=20&c=ImhJgyLB2lhDTcZZisraOyQ4nJqs8iVCVj3_tbYgrYc=",
-      date: "August 18, 2024",
+      title: "SAMPLE CUTTER - CIRCULAR FOR GSM.",
+      description: "PHYSICAL PROPERTY TESTING EQUIPMENT",
+      image: image4,
+      date: "UEC 1003 A",
+    },
+    {
+      id: 5,
+      title: "SAMPLE CUTTER - CIRCULAR FOR FCT",
+      description: "PHYSICAL PROPERTY TESTING EQUIPMENT.",
+      image: image5,
+      date: "UEC 1003 B",
+    },
+    {
+      id: 6,
+      title:
+        "SAMPLE STRIP CUTTER FOR TENSILE & FOLDING (K.M.) TESTS (GUILLOTINE TYPE)",
+      description: "PHYSICAL PROPERTY TESTING EQUIPMENT",
+      image: image6,
+      date: "UEC -1006 AI",
     },
   ];
 
   return (
     <section className="py-10 px-4">
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-bold">Blogs</h2>
+        <h2 className="text-3xl font-bold">Products</h2>
         <hr className="border-b-2 border-blue-500 w-16 mx-auto mt-2" />
       </div>
       <div className="flex flex-wrap justify-center gap-6">
@@ -65,7 +66,7 @@ const Blogs = () => {
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-full h-40 object-cover"
+                className="w-full h-40 object-contain"
               />
               <div className="bg-white text-black text-sm p-1 opacity-75">
                 {post.date}

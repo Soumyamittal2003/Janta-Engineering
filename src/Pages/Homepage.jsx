@@ -5,6 +5,7 @@ import { Navbarmenu } from "../Components/Navbar";
 import ContactUs from "../Components/Contact";
 import Blogs from "../Components/Blogs";
 import Carousel from "../Components/Carousel";
+import CategoryCards from "../Components/CategoryCard";
 
 function Homepage() {
   const mockCategory = {
@@ -43,6 +44,10 @@ function Homepage() {
         </div>
       </section>
       <Testimonials />
+
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <CategoryCards />
+      </div>
       <Blogs />
       <ContactUs />
       <Footer />
