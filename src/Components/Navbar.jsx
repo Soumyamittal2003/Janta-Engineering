@@ -119,7 +119,7 @@ function Products() {
                 />
               </MenuItem>
             </MenuHandler>
-            <MenuList className="rounded-lg shadow-lg bg-white ml-1 px-4 z-10">
+            <MenuList className="rounded-lg shadow-lg bg-white px-4 z-10 mt-32 -ml-72 md:mt-0 md:-ml-1">
               {renderItems}
             </MenuList>
           </Menu>
