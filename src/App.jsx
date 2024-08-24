@@ -25,11 +25,11 @@ function App() {
             <Route path="/product" element={<ProductPage />} />
             <Route path="/contact-us" element={<Contact />} />
 
-            <Route path="/admin" element={<AdminLayout />}>
+            {/* <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<SignIn />} />
               <Route path="addEquipment" element={<AddProductForm />} />
               <Route path="addEquipment/addAadmin" element={<AddAdmin />} />
-            </Route>
+            </Route> */}
 
             <Route path="/WhoAreWe" element={<WhoAreWe />} />
 
