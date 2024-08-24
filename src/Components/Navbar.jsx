@@ -39,142 +39,6 @@ const nestedMenuItems = [
   },
 ];
 
-// function Products() {
-//   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-//   const [openNestedMenu, setOpenNestedMenu] = React.useState(false);
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-//   const renderItems = nestedMenuItems.map(({ title }, key) => (
-//     <Link to={{ pathname: "/product" }} state={{ title }} key={key}>
-//       {" "}
-//       <MenuItem className="hover:bg-blue-100 hover:text-blue-600 transition-colors duration-150 px-1 py-2 flex justify-start focus:outline-none focus:ring-0 text-lg">
-//         {title}
-//       </MenuItem>
-//     </Link>
-//   ));
-
-//   return (
-//     <React.Fragment>
-//       <Menu
-//         open={isMenuOpen}
-//         handler={setIsMenuOpen}
-//         placement="bottom-start"
-//         allowHover={true}
-//         offset={10}
-//       >
-//         <MenuHandler>
-//           <Typography as="div" variant="small" className="font-medium px-7">
-//             <ListItem
-//               className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer"
-//               selected={isMenuOpen || isMobileMenuOpen}
-//               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
-//             >
-//               PRODUCTS
-//               <ChevronDownIcon
-//                 strokeWidth={2.5}
-//                 className={`hidden h-4 w-4 transition-transform lg:block ${
-//                   isMenuOpen ? "rotate-180" : ""
-//                 }`}
-//               />
-//               <ChevronDownIcon
-//                 strokeWidth={2.5}
-//                 className={`block h-4 w-4 transition-transform lg:hidden ${
-//                   isMobileMenuOpen ? "rotate-180" : ""
-//                 }`}
-//               />
-//             </ListItem>
-//           </Typography>
-//         </MenuHandler>
-
-//         <MenuList className="lg:block bg-white rounded-lg shadow-lg p-4 mt-5 transition-all duration-100 text-lg z-10">
-//           <Menu
-//             placement="right-start"
-//             allowHover
-//             offset={10}
-//             open={openNestedMenu}
-//             handler={setOpenNestedMenu}
-//           >
-//             <MenuHandler className="flex items-center justify-between">
-//               <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-5 h-auto flex justify-start cursor-pointer">
-//                 LAB TESTING EQUIPMENT
-//                 <ChevronUpIcon
-//                   strokeWidth={2.5}
-//                   className={`h-4 w-4 transition-transform ${
-//                     isMenuOpen ? "rotate-90" : ""
-//                   }`}
-//                 />
-//               </MenuItem>
-//             </MenuHandler>
-//             <MenuList className="rounded-lg shadow-lg bg-white ml-1 px-4 z-10">
-//               {renderItems}
-//             </MenuList>
-//           </Menu>
-//           <Link
-//             to={{ pathname: "/product" }}
-//             state={{ title: "HANDMADE PAPER MACHINES" }}
-//           >
-//             <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-//               HANDMADE PAPER MACHINES
-//             </MenuItem>
-//           </Link>
-//           <Link
-//             to={{ pathname: "/product" }}
-//             state={{ title: "PRAKRITIK PAINT MACHINES" }}
-//           >
-//             <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-//               PRAKRITIK PAINT MACHINES
-//             </MenuItem>
-//           </Link>
-//         </MenuList>
-//       </Menu>
-//       <div className="block lg:hidden">
-//         <Collapse open={isMobileMenuOpen}>
-//           <Menu
-//             placement="bottom"
-//             allowHover
-//             offset={6}
-//             open={openNestedMenu}
-//             handler={setOpenNestedMenu}
-//           >
-//             <MenuHandler className="flex items-center justify-between">
-//               <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-//                 LAB TESTING EQUIPMENT
-//                 <ChevronUpIcon
-//                   strokeWidth={2.5}
-//                   className={`h-4 w-4 transition-transform ${
-//                     isMenuOpen ? "rotate-90" : ""
-//                   }`}
-//                 />
-//               </MenuItem>
-//             </MenuHandler>
-//             <MenuList className="block rounded-lg shadow-lg bg-white lg:hidden ml-2">
-//               {renderItems}
-//             </MenuList>
-//           </Menu>
-//           <Link
-//             to={{ pathname: "/product" }}
-//             state={{ title: "HANDMADE PAPER MACHINES" }}
-//           >
-//             {" "}
-//             <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-//               HANDMADE PAPER MACHINES
-//             </MenuItem>
-//           </Link>
-//           <Link
-//             to={{ pathname: "/product" }}
-//             state={{ title: "PRAKRITIK PAINT MACHINES" }}
-//           >
-//             {" "}
-//             <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-//               PRAKRITIK PAINT MACHINES
-//             </MenuItem>
-//           </Link>
-//         </Collapse>
-//       </div>
-//     </React.Fragment>
-//   );
-// }
-
 function Products() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -187,7 +51,6 @@ function Products() {
     const currentState = location.state;
 
     if (currentPath === "/product" && currentState?.title === title) {
-      // If already on the same page with the same state, force a re-render by navigating to a different path first
       navigate("/temp", { replace: true });
       navigate("/product", { state: { title } });
     } else {
@@ -294,7 +157,7 @@ function Products() {
                 />
               </MenuItem>
             </MenuHandler>
-            <MenuList className="block rounded-lg shadow-lg bg-white lg:hidden ml-2">
+            <MenuList className="block rounded-lg shadow-lg bg-white lg:hidden">
               {renderItems}
             </MenuList>
           </Menu>
@@ -354,7 +217,7 @@ function Applications() {
           </Typography>
         </MenuHandler>
 
-        <MenuList className="lg:block bg-white rounded-lg shadow-lg p-4 mt-5 transition-all duration-100 text-lg ">
+        <MenuList className="lg:block bg-white rounded-lg shadow-lg p-4 mt-5 transition-all duration-100 text-lg z-10">
           <Link to={{ pathname: "/product" }} state={{ title: "NEWSPRINT" }}>
             <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
               NEWSPRINT

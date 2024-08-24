@@ -53,25 +53,6 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-
-      {/* Dots Navigation */}
-      {/* <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            className={`w-3 h-3 rounded-full ${
-              currentSlide === index ? "bg-blue-600" : "bg-gray-300"
-            }`}
-            aria-current={currentSlide === index ? "true" : "false"}
-            aria-label={`Slide ${index + 1}`}
-            onClick={() => setSlide(index)}
-            data-carousel-slide-to={index}
-          ></button>
-        ))}
-      </div> */}
-
-      {/* Previous Button */}
       <button
         type="button"
         className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
