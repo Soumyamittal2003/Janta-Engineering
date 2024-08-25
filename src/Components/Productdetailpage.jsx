@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Navbarmenu } from "./Navbar";
 import Footer from "./Footer";
 import { useLocation } from "react-router-dom";
 import Button from "./Button";
+import Navbar from "./Navbar";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 const EquipmentCategoryDetailPage = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const EquipmentCategoryDetailPage = () => {
 
   return (
     <>
-      <Navbarmenu />
+      <Navbar />
       <div className="flex flex-col h-screen">
         <div className="container mx-auto sm:p-16 px-4 py-10 flex-grow">
           <div className="font-bold text-gray-600 w-full p-10 mb-10 border rounded-md bg-gray-100">
@@ -203,6 +204,9 @@ const EquipmentCategoryDetailPage = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="fixed bottom-4 right-4">
+          <WhatsAppIcon phoneNumber="9084730912" />
         </div>
         <Footer />
       </div>

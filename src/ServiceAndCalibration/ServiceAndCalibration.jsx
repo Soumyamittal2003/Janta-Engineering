@@ -1,11 +1,11 @@
 import React from "react";
-import { Navbarmenu } from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
 
 function ServiceAndCalibration() {
   return (
     <>
-      <Navbarmenu />
+      <Navbar />
       <div className="text-center md:px-10 md:pb-10 pt-10 text-2xl font-black">
         SERVICE AND CALIBRATION
       </div>

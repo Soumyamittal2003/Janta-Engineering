@@ -1,16 +1,17 @@
 import React from "react";
 import Testimonials from "../Components/Testimonials";
 import Footer from "../Components/Footer";
-import { Navbarmenu } from "../Components/Navbar";
 import ContactUs from "../Components/Contact";
 import Blogs from "../Components/Blogs";
 import Carousel from "../Components/Carousel";
 import CategoryCards from "../Components/CategoryCard";
+import WhatsAppIcon from "../Components/WhatsAppIcon";
+import Navbar from "../Components/Navbar";
 
 function Homepage() {
   return (
     <>
-      <Navbarmenu />
+      <Navbar />
       <Carousel />
       <section className="flex items-center justify-center min-h-[300px] bg-gray-200 md:px-10 py-10">
         <div className="max-w-full text-start px-4">
@@ -38,6 +39,9 @@ function Homepage() {
       </div>
       <Blogs />
       <ContactUs />
+      <div className="fixed bottom-4 right-4">
+        <WhatsAppIcon phoneNumber="9084730912" />
+      </div>
       <Footer />
     </>
   );

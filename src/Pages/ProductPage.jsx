@@ -1,10 +1,11 @@
 import { Spinner } from "@material-tailwind/react";
 import CautionBox from "../Components/CautionBox";
 import Footer from "../Components/Footer";
-import { Navbarmenu } from "../Components/Navbar";
+import Navbar from "../Components/Navbar";
 import ProductCard from "../Components/ProductCard";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import WhatsAppIcon from "../Components/WhatsAppIcon";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -41,7 +42,7 @@ const ProductPage = () => {
 
   return (
     <div>
-      <Navbarmenu />
+      <Navbar />
 
       <div className="p-4 md:p-8 flex flex-col">
         <h2 className="text-center text-2xl md:text-3xl font-semibold mb-3">
@@ -66,6 +67,9 @@ const ProductPage = () => {
             ))
           )}
         </div>
+      </div>
+      <div className="fixed bottom-4 right-4">
+        <WhatsAppIcon phoneNumber="9084730912" />
       </div>
       <Footer />
     </div>
