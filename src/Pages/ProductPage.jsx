@@ -9,7 +9,8 @@ import WhatsAppIcon from "../Components/WhatsAppIcon";
 
 const ProductPage = () => {
   const location = useLocation();
-  const { title } = location.state || {};
+  const { title } = location.state || "";
+
   const [equipmentData, setEquipmentData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const getEquipment = async () => {
@@ -19,12 +20,18 @@ const ProductPage = () => {
         "https://janta-engineering-server.onrender.com/api/v1/equipment/equipment"
       );
       const result = await response.json();
-      console.log(result);
+
       if (result.success) {
         setIsLoading(false);
+        if (!title) {
+          return setEquipmentData(result.equipment);
+        }
         const filteredCategory = result.equipment.filter((ele) => {
-          return ele.category.toLowerCase() == title.toLowerCase();
+          return (
+            ele.category.toLowerCase() == title.toLowerCase(result.equipment)
+          );
         });
+
         setEquipmentData(filteredCategory);
       } else {
         setIsLoading(false);
@@ -50,7 +57,7 @@ const ProductPage = () => {
         </h2>
         <hr className="border-b-2 border-blue-500 w-20 mx-auto mt-2 mb-6" />
         <div className="font-bold text-gray-600 w-full p-10 mb-10 border rounded-md bg-gray-100">
-          {title}
+          {title ? title : "All Products"}
         </div>
 
         <CautionBox />
@@ -68,7 +75,7 @@ const ProductPage = () => {
           )}
         </div>
       </div>
-      <div className="fixed bottom-4 right-4">
+      <div className="fixed bottom-5 right-5">
         <WhatsAppIcon phoneNumber="9084730912" />
       </div>
       <Footer />

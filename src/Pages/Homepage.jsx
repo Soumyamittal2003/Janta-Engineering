@@ -39,7 +39,7 @@ function Homepage() {
       </div>
       <Blogs />
       <ContactUs />
-      <div className="fixed bottom-4 right-4">
+      <div className="fixed bottom-5 right-5">
         <WhatsAppIcon phoneNumber="9084730912" />
       </div>
       <Footer />

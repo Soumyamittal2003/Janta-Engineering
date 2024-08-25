@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import WhatsAppIcon from "../Components/WhatsAppIcon";
 
 function WhoAreWe() {
   return (
@@ -40,6 +41,9 @@ function WhoAreWe() {
         operations the company has an ambitious growth plan to extend its areas
         of operations and to emerge as the valuable associates of renowned
         international companies.
+      </div>
+      <div className="fixed bottom-5 right-5">
+        <WhatsAppIcon phoneNumber="9084730912" />
       </div>
       <Footer />
     </>
