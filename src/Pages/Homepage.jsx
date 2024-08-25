@@ -43,6 +43,7 @@ function Homepage() {
         </div>
       </section>
       <Testimonials />
+      {/* <CategoryCards/> */}
       <Blogs />
       <ContactUs />
       <Footer />
