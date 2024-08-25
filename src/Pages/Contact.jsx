@@ -1,12 +1,12 @@
 import React from "react";
-import { Navbarmenu } from "../Components/Navbar";
 import ContactUs from "../Components/Contact";
 import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
 
 function Contact() {
   return (
     <>
-      <Navbarmenu />
+      <Navbar/>
       <ContactUs />
       <Footer />
     </>

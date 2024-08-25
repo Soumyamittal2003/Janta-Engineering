@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
+import image1 from "../assets/photo/front1.jpg";
+import image2 from "../assets/photo/front2.jpg";
+import image3 from "../assets/photo/front3.jpeg";
+import image4 from "../assets/photo/front4.jpg";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?cs=srgb&dl=pexels-souvenirpixels-417074.jpg&fm=jpg",
-    "https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=600&quality=80",
-    "https://www.shutterstock.com/image-photo/landscape-road-mountains-600nw-2465573769.jpg",
-    "https://t4.ftcdn.net/jpg/05/47/97/81/360_F_547978128_vqEEUYBr1vcAwfRAqReZXTYtyawpgLcC.jpg",
-    "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=",
-  ];
+  const slides = [image1, image2, image3, image4];
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) =>
@@ -55,28 +53,9 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-
-      {/* Dots Navigation */}
-      {/* <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            className={`w-3 h-3 rounded-full ${
-              currentSlide === index ? "bg-blue-600" : "bg-gray-300"
-            }`}
-            aria-current={currentSlide === index ? "true" : "false"}
-            aria-label={`Slide ${index + 1}`}
-            onClick={() => setSlide(index)}
-            data-carousel-slide-to={index}
-          ></button>
-        ))}
-      </div> */}
-
-      {/* Previous Button */}
       <button
         type="button"
-        className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
+        className="absolute top-0 start-0 z-0 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
         data-carousel-prev
         onClick={prevSlide}
       >
@@ -103,7 +82,7 @@ const Carousel = () => {
       {/* Next Button */}
       <button
         type="button"
-        className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
+        className="absolute top-0 end-0 z-0 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
         data-carousel-next
         onClick={nextSlide}
       >

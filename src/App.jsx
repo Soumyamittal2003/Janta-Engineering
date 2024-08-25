@@ -13,6 +13,7 @@ import AddAdmin from "./Pages/Addadmin";
 import AddProductForm from "./Pages/AddProduct";
 import WhoAreWe from "./AboutUs/WhoAreWe";
 import SignIn from "./Pages/Loginpage";
+import AdminProducts from "./Pages/AdminProducts";
 
 function App() {
   return (
@@ -25,11 +26,14 @@ function App() {
             <Route path="/product" element={<ProductPage />} />
             <Route path="/contact-us" element={<Contact />} />
 
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<SignIn />} />
-              <Route path="addEquipment" element={<AddProductForm />} />
-              <Route path="addEquipment/addAadmin" element={<AddAdmin />} />
-            </Route>
+            {/* <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<SignIn />} /> */}
+              <Route path="/addEquipment" element={<AddProductForm/>} />
+              <Route path="/adminProduct" element={<AdminProducts/>} />
+              <Route path="/admin/register" element={<AddAdmin/>} />
+              <Route path="/admin/login" element={<SignIn/>} />
+              {/* <Route path="/addEquipment/addAadmin" element={<AddAdmin />} /> */}
+            {/* </Route> */}
 
             <Route path="/WhoAreWe" element={<WhoAreWe />} />
 

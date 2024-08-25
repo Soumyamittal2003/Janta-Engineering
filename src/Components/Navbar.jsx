@@ -1,470 +1,258 @@
-import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  Icon,
-  Button,
-  IconButton,
-  List,
-  ListItem,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Input,
-} from "@material-tailwind/react";
-import {
-  ChevronDownIcon,
-  Bars3Icon,
-  XMarkIcon,
-  ChevronUpIcon,
-} from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const nestedMenuItems = [
-  {
-    title: "PHYSICAL PROPERTY TESTING EQUIPMENT",
-  },
-  {
-    title: "PULP TESTING EQUIPMENT",
-  },
-  {
-    title: "PACKAGING TESTING EQUIPMENT",
-  },
-  {
-    title: "SURFACE COATING & PRINTABILITY",
-  },
-  {
-    title: "ENVIRONMENTAL TESTING EQUIPMENT",
-  },
-];
+export function Navbar() {
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-function Products() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [openNestedMenu, setOpenNestedMenu] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const nestedMenuItems = [
+    {
+      title: "PHYSICAL PROPERTY TESTING EQUIPMENT",
+    },
+    {
+      title: "PULP TESTING EQUIPMENT",
+    },
+    {
+      title: "PACKAGING TESTING EQUIPMENT",
+    },
+    {
+      title: "SURFACE COATING & PRINTABILITY",
+    },
+    {
+      title: "ENVIRONMENTAL TESTING EQUIPMENT",
+    },
+  ];
 
-  const renderItems = nestedMenuItems.map(({ title }, key) => (
+  const handleNavigation = (title) => {
+    const currentPath = location.pathname;
+    const currentState = location.state;
 
-    <Link to={{ pathname: "/product" }}
-      state={{ title }}
-      key={key}
-    >
-      {" "}
-      <MenuItem className="hover:bg-blue-100 hover:text-blue-600 transition-colors duration-150 px-1 py-2 flex justify-start focus:outline-none focus:ring-0 text-lg">
-        {title}
-      </MenuItem>
-    </Link>
-  ));
-
+    if (currentPath === "/product" && currentState?.title === title) {
+      navigate("/temp", { replace: true });
+      navigate("/product", { state: { title } });
+    } else {
+      navigate("/product", { state: { title } });
+    }
+  };
   return (
-    <React.Fragment>
-      <Menu
-        open={isMenuOpen}
-        handler={setIsMenuOpen}
-        placement="bottom-start"
-        allowHover={true}
-        offset={10}
-      >
-        <MenuHandler>
-          <Typography as="div" variant="small" className="font-medium px-7">
-            <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer"
-              selected={isMenuOpen || isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen((cur) => !cur)}
-            >
-              PRODUCTS
-              <ChevronDownIcon
-                strokeWidth={2.5}
-                className={`hidden h-4 w-4 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
-                  }`}
+    <nav className="sticky z-10 top-0 bg-white shadow-md p-2">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link to="/">
+              <img
+                src="https://jantaengineering.com/wp-content/uploads/2024/05/JE-logo-1.png"
+                alt="Logo"
+                className="w-36 h-auto object-contain"
               />
-              <ChevronDownIcon
-                strokeWidth={2.5}
-                className={`block h-4 w-4 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
-                  }`}
-              />
-            </ListItem>
-          </Typography>
-        </MenuHandler>
-
-        <MenuList className="lg:block bg-white rounded-lg shadow-lg p-4 mt-5 transition-all duration-100 text-lg">
-          <Menu
-            placement="right-start"
-            allowHover
-            offset={10}
-            open={openNestedMenu}
-            handler={setOpenNestedMenu}
-          >
-            <MenuHandler className="flex items-center justify-between">
-              <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-5 h-auto flex justify-start cursor-pointer">
-                LAB TESTING EQUIPMENT
-                <ChevronUpIcon
-                  strokeWidth={2.5}
-                  className={`h-4 w-4 transition-transform ${isMenuOpen ? "rotate-90" : ""
-                    }`}
-                />
-              </MenuItem>
-            </MenuHandler>
-            <MenuList className="rounded-lg shadow-lg bg-white ml-1 px-4">
-              {renderItems}
-            </MenuList>
-          </Menu>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "HANDMADE PAPER MACHINES" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              HANDMADE PAPER MACHINES
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "PRAKRITIK PAINT MACHINES" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PRAKRITIK PAINT MACHINES
-            </MenuItem>
-          </Link>
-        </MenuList>
-      </Menu>
-      <div className="block lg:hidden">
-        <Collapse open={isMobileMenuOpen}>
-          <Menu
-            placement="bottom"
-            allowHover
-            offset={6}
-            open={openNestedMenu}
-            handler={setOpenNestedMenu}
-          >
-            <MenuHandler className="flex items-center justify-between">
-              <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-                LAB TESTING EQUIPMENT
-                <ChevronUpIcon
-                  strokeWidth={2.5}
-                  className={`h-4 w-4 transition-transform ${isMenuOpen ? "rotate-90" : ""
-                    }`}
-                />
-              </MenuItem>
-            </MenuHandler>
-            <MenuList className="block rounded-lg shadow-lg bg-white lg:hidden ml-2">
-              {renderItems}
-            </MenuList>
-          </Menu>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "HANDMADE PAPER MACHINES" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              HANDMADE PAPER MACHINES
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "PRAKRITIK PAINT MACHINES" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PRAKRITIK PAINT MACHINES
-            </MenuItem>
-          </Link>
-        </Collapse>
-      </div>
-    </React.Fragment>
-  );
-}
-
-function Applications() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [openNestedMenu, setOpenNestedMenu] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-  return (
-    <React.Fragment>
-      <Menu
-        open={isMenuOpen}
-        handler={setIsMenuOpen}
-        placement="bottom-start"
-        allowHover={true}
-        offset={10}
-      >
-        <MenuHandler>
-          <Typography as="div" variant="small" className="font-medium px-7">
-            <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer"
-              selected={isMenuOpen || isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen((cur) => !cur)}
-            >
-              APPLICATIONS
-              <ChevronDownIcon
-                strokeWidth={2.5}
-                className={`hidden h-4 w-4 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
-                  }`}
-              />
-              <ChevronDownIcon
-                strokeWidth={2.5}
-                className={`block h-4 w-4 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
-                  }`}
-              />
-            </ListItem>
-          </Typography>
-        </MenuHandler>
-
-        <MenuList className="lg:block bg-white rounded-lg shadow-lg p-4 mt-5 transition-all duration-100 text-lg ">
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "NEWSPRINT" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              NEWSPRINT
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "WRITING PRINTING/COPIER" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              WRITING PRINTING/COPIER
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "DUPLEX AND ART PAPER" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              DUPLEX AND ART PAPER
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "KRAFT LINER/FLUTING PAPER/SACK" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              KRAFT LINER/FLUTING PAPER/SACK
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "CORRUGATED FIBRE BOARD BOX BOARD" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              CORRUGATED FIBRE BOARD BOX BOARD
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "TISSUE & SOFT MATERIAL" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              TISSUE & SOFT MATERIAL
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PULP TESTING RAW MATERIAL RECYCLED FIBRE
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "PULP TESTING RAW MATERIAL WOOD FIBRE" }}>
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PULP TESTING RAW MATERIAL WOOD FIBRE
-            </MenuItem>
-          </Link>
-        </MenuList>
-      </Menu>
-      <div className="block lg:hidden">
-        <Collapse open={isMobileMenuOpen}>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "TISSUE & SOFT MATERIAL" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              TISSUE & SOFT MATERIAL
-            </MenuItem>
-          </Link>
-          {/* <Link to={{pathname:"/product"}}
-        state={{title:"PULP TESTING RAW MATERIAL RECYCLED FIBRE"}}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PULP TESTING RAW MATERIAL RECYCLED FIBRE
-            </MenuItem>
-          </Link> */}
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "PULP TESTING RAW MATERIAL AGRO FIBRE" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PULP TESTING RAW MATERIAL AGRO FIBRE
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "PULP TESTING RAW MATERIAL WOOD FIBRE" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              PULP TESTING RAW MATERIAL WOOD FIBRE
-            </MenuItem>
-          </Link>
-          <Link to={{ pathname: "/product" }}
-            state={{ title: "Items" }}>
-            {" "}
-            <MenuItem className="hover:bg-blue-100 hover:text-blue-600 rounded-md transition-colors duration-150 py-2 px-1 h-auto flex justify-start cursor-pointer">
-              Items
-            </MenuItem>
-          </Link>
-        </Collapse>
-      </div>
-    </React.Fragment>
-  );
-}
-
-function NavList() {
-  return (
-    <List className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1">
-      {/* <AboutUs /> */}
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <Link to="/WhoAreWe">
-          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
-            ABOUT US
-          </ListItem>
-        </Link>
-      </Typography>
-      <Products />
-      <Applications />
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <Link to="/ServiceAndCalibration">
-          <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
-            SERVICE AND CALIBRATION
-          </ListItem>
-        </Link>
-      </Typography>
-    </List>
-  );
-}
-
-// function NavList() {
-//   const [searchTerm, setSearchTerm] = useState("");
-
-//   const handleSearchChange = (event) => {
-//     setSearchTerm(event.target.value);
-//   };
-
-//   const handleSearch = () => {
-//     console.log("Searching for:", searchTerm);
-//     // Add your search logic here
-//   };
-
-//   return (
-//     <List className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1">
-//       <Typography
-//         as="a"
-//         href="#"
-//         variant="small"
-//         color="blue-gray"
-//         className="font-medium"
-//       >
-//         <Link to="/WhoAreWe">
-//           <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
-//             ABOUT US
-//           </ListItem>
-//         </Link>
-//       </Typography>
-//       <Products />
-//       <Applications />
-//       <Typography
-//         as="a"
-//         href="#"
-//         variant="small"
-//         color="blue-gray"
-//         className="font-medium"
-//       >
-//         <Link to="/ServiceAndCalibration">
-//           <ListItem className="flex items-center gap-2 py-2 pr-4 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer text-black px-6">
-//             SERVICE AND CALIBRATION
-//           </ListItem>
-//         </Link>
-//       </Typography>
-//       <div className="flex items-center gap-2 py-2 pr-4 lg:ml-auto">
-//         <input
-//           type="text"
-//           placeholder="Search..."
-//           value={searchTerm}
-//           onChange={handleSearchChange}
-//           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-//         />
-//         <Icon
-//           name="search"
-//           size="lg"
-//           className="cursor-pointer text-black hover:text-blue-600"
-//           onClick={handleSearch}
-//         />
-//       </div>
-//     </List>
-//   );
-// }
-
-export function Navbarmenu() {
-  const [openNav, setOpenNav] = React.useState(false);
-
-  React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
-  }, []);
-
-  return (
-    <Navbar className="sticky z-10 top-0 max-w-screen-3xl px-4 py-2 bg-white shadow-md rounded-lg">
-      <div className="flex items-center justify-between text-blue-gray-900">
-        <Link to="/">
-          <div className="h-20 w-50">
-            <img
-              src="https://jantaengineering.com/wp-content/uploads/2024/05/JE-logo-1.png"
-              alt={`company logo`}
-              className="h-full w-full object-cover"
-            />
-
+            </Link>
           </div>
 
-        </Link>
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex lg:items-center lg:gap-8">
+            <Menu>
+              <Link to="/WhoAreWe">
+                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
+                  ABOUT US
+                </button>
+              </Link>
+              <MenuHandler>
+                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
+                  PRODUCTS
+                </button>
+              </MenuHandler>
+              <MenuList className="bg-white shadow-lg rounded-md p-2 z-20 mt-5">
+                <Menu>
+                  <MenuHandler>
+                    <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                      <span>LAB TESTING EQUIPMENT</span>
+                    </MenuItem>
+                  </MenuHandler>
+                  <MenuList className="bg-white shadow-lg rounded-md p-3 z-30">
+                    {nestedMenuItems.map(({ title }, key) => (
+                      <MenuItem onClick={() => handleNavigation(title)} key={key} className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3 ">
+                        <Link >{title}</Link>
+                      </MenuItem>
+                    ))}
 
-        {/* Desktop Nav List */}
-        <div className="hidden lg:block">
-          <NavList />
+                  </MenuList>
+                </Menu>
+                <MenuItem onClick={() => handleNavigation("HANDMADE PAPER MACHINES")} className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3">
+                  <Link >HANDMADE PAPER MACHINES</Link>
+                </MenuItem>
+                <MenuItem onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES")} className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3">
+                  <Link >PRAKRITIK PAINT MACHINES</Link>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+            <Menu>
+              <MenuHandler>
+                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
+                  APPLICATIONS
+                </button>
+              </MenuHandler>
+              <MenuList className="bg-white shadow-lg rounded-md z-30 mt-5">
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  <Link to={{ pathname: "/product" }} state={{ title: "NEWSPRINT" }}> NEWSPRINT</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "WRITING PRINTING/COPIER" }}>WRITING PRINTING/COPIER</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "DUPLEX AND ART PAPER" }}>DUPLEX AND ART PAPER</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "KRAFT LINER/FLUTING PAPER/SACK" }}>KRAFT LINER/FLUTING PAPER/SACK</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "CORRUGATED FIBRE BOARD BOX BOARD" }}>CORRUGATED FIBRE BOARD BOX BOARD</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "TISSUE & SOFT MATERIAL" }}>TISSUE & SOFT MATERIAL</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE" }}>PULP TESTING RAW MATERIAL RECYCLED FIBRE</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "PULP TESTING RAW MATERIAL WOOD FIBRE" }}>PULP TESTING RAW MATERIAL WOOD FIBRE</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                  state={{ title: "PULP TESTING RAW MATERIAL AGRO FIBRE" }} >PULP TESTING RAW MATERIAL AGRO FIBRE</Link>
+                </MenuItem>
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }} state={{ title: "Items" }}
+                >Items</Link>
+                </MenuItem>
+
+              </MenuList>
+              <Link to="/ServiceAndCalibration">
+                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
+                  SERVICE AND CALIBRATION
+                </button>
+              </Link>
+            </Menu>
+            <Link
+              to="/contact-us"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150"
+            >
+              Contact Us
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-900 hover:text-blue-600"
+            >
+              {isMobileMenuOpen ? (
+                <XMarkIcon className="w-6 h-6" />
+              ) : (
+                <Bars3Icon className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
-
-        {/* Desktop Contact Us Button */}
-        <div className="hidden gap-2 lg:flex">
-          <Link to="/contact-us">
-            <Button size="sm" color="blue" className="text-md text-white hover:bg-blue-600">
-              CONTACT US
-            </Button>
-          </Link>
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <IconButton
-          variant="text"
-          className="lg:hidden"
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </IconButton>
       </div>
 
-      {/* Mobile Collapse Menu */}
-      <Collapse open={openNav}>
-        <div className="flex flex-col w-full gap-2 lg:hidden">
-          <NavList /> {/* Add this to ensure NavList is displayed on mobile */}
-          <Link to="/contact-us">
-            <Button
-              size="sm"
-              fullWidth
-              color="blue"
-              className="text-xl text-black"
-            >
-              CONTACT US
-            </Button>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white shadow-md p-4">
+
+
+          <Menu>
+            <Link to="/WhoAreWe">
+              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
+                ABOUT US
+              </button>
+            </Link>
+            <MenuHandler>
+              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
+                PRODUCTS
+              </button>
+            </MenuHandler>
+            <MenuList className="bg-white shadow-lg rounded-md p-2 z-20 ">
+              <Menu>
+                <MenuHandler>
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                    <span>LAB TESTING EQUIPMENT</span>
+                  </MenuItem>
+                </MenuHandler>
+                <MenuList className="bg-white shadow-lg rounded-md p-3 z-30 ">
+                  {nestedMenuItems.map(({ title }, key) => (
+                    <MenuItem onClick={() => handleNavigation(title)} key={key} className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                      <Link >{title}</Link>
+                    </MenuItem>
+                  ))}
+
+                </MenuList>
+              </Menu>
+              <MenuItem onClick={() => handleNavigation("HANDMADE PAPER MACHINES")} className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                <Link >HANDMADE PAPER MACHINES</Link>
+              </MenuItem>
+              <MenuItem onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES")} className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                <Link >PRAKRITIK PAINT MACHINES</Link>
+              </MenuItem>
+            </MenuList>
+
+          </Menu>
+          <Menu>
+            <MenuHandler>
+              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
+                APPLICATIONS
+              </button>
+            </MenuHandler>
+            <MenuList className="bg-white shadow-lg rounded-md z-30">
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                <Link to={{ pathname: "/product" }} state={{ title: "NEWSPRINT" }}> NEWSPRINT</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "WRITING PRINTING/COPIER" }}>WRITING PRINTING/COPIER</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "DUPLEX AND ART PAPER" }}>DUPLEX AND ART PAPER</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "KRAFT LINER/FLUTING PAPER/SACK" }}>KRAFT LINER/FLUTING PAPER/SACK</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "CORRUGATED FIBRE BOARD BOX BOARD" }}>CORRUGATED FIBRE BOARD BOX BOARD</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "TISSUE & SOFT MATERIAL" }}>TISSUE & SOFT MATERIAL</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE" }}>PULP TESTING RAW MATERIAL RECYCLED FIBRE</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "PULP TESTING RAW MATERIAL WOOD FIBRE" }}>PULP TESTING RAW MATERIAL WOOD FIBRE</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }}
+                state={{ title: "PULP TESTING RAW MATERIAL AGRO FIBRE" }} >PULP TESTING RAW MATERIAL AGRO FIBRE</Link>
+              </MenuItem>
+              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">                                    <Link to={{ pathname: "/product" }} state={{ title: "Items" }}
+              >Items</Link>
+              </MenuItem>
+
+            </MenuList>
+            <Link to="/ServiceAndCalibration">
+              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
+                SERVICE AND CALIBRATION
+              </button>
+            </Link>
+          </Menu>
+          <Link
+            to="/contact-us"
+            className="block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md text-center hover:bg-blue-700 transition duration-150"
+          >
+            Contact Us
           </Link>
         </div>
-      </Collapse>
-    </Navbar>
+      )}
+    </nav>
   );
 }
+
+export default Navbar;

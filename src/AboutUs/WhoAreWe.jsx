@@ -1,13 +1,15 @@
 import React from "react";
-import { Navbarmenu } from "../Components/Navbar";
+import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
 function WhoAreWe() {
   return (
     <>
-      <Navbarmenu />
-      <div className="text-center px-10 py-10 text-2xl font-black">ABOUT US</div>
-      <div className=" min-h-screen text-center px-20 py-10 font-medium text-lg">
+      <Navbar/>
+      <div className="text-center md:px-10 md:pb-10 pt-10 text-2xl font-black">
+        ABOUT US
+      </div>
+      <div className="min-h-screen text-start px-4 md:px-16 py-10 font-normal text-lg">
         We are the "JANTA ENGINEERING (JE)" manufacturers and suppliers of
         "Precision Testing Instruments" mainly for testing the properties of
         Pulp, Paper and Paper Board for Paper, Conversion and Allied Industries.
