@@ -57,12 +57,12 @@ const SignIn = () => {
             <Link to="/">
               <img
                 className="mx-auto h-12 w-auto dark:hidden"
-                src="/path/to/logo.svg"
+                src="https://jantaengineering.com/wp-content/uploads/2024/05/JE-logo-1.png"
                 alt="Logo"
               />
               <img
                 className="mx-auto h-12 w-auto hidden dark:block"
-                src="/path/to/logo-dark.svg"
+                src="https://jantaengineering.com/wp-content/uploads/2024/05/JE-logo-1.png"
                 alt="Logo"
               />
             </Link>
