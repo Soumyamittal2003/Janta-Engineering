@@ -78,7 +78,11 @@ function Products() {
         offset={10}
       >
         <MenuHandler>
-          <Typography as="div" variant="small" className="font-medium px-7">
+          <Typography
+            as="div"
+            variant="small"
+            className="font-medium px-7 z-10"
+          >
             <ListItem
               className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900 hover:bg-blue-100 hover:text-blue-600 rounded-md transition-all duration-200 text-xl cursor-pointer"
               selected={isMenuOpen || isMobileMenuOpen}

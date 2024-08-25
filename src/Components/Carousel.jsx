@@ -55,7 +55,7 @@ const Carousel = () => {
       </div>
       <button
         type="button"
-        className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
+        className="absolute top-0 start-0 z-0 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
         data-carousel-prev
         onClick={prevSlide}
       >
@@ -82,7 +82,7 @@ const Carousel = () => {
       {/* Next Button */}
       <button
         type="button"
-        className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
+        className="absolute top-0 end-0 z-0 flex items-center justify-center h-full px-4 cursor-pointer group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out focus:outline-none"
         data-carousel-next
         onClick={nextSlide}
       >
