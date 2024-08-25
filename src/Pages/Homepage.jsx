@@ -12,8 +12,8 @@ function Homepage() {
     <>
       <Navbarmenu />
       <Carousel />
-      <section className="flex items-center justify-center min-h-[300px] bg-gray-200 px-10 py-10">
-        <div className="max-w-full text-center">
+      <section className="flex items-center justify-center min-h-[300px] bg-gray-200 md:px-10 py-10">
+        <div className="max-w-full text-start px-4">
           <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
             JANTA ENGINEERING (JE) is a leading manufacturer and supplier of
             Precision Testing Instruments for the pulp, paper, and paperboard

@@ -51,9 +51,7 @@ const Blogs = () => {
                 alt={item.productName}
                 className="w-full h-40 object-contain"
               />
-              {/* <div className="bg-white text-black text-sm p-1 pl-5 opacity-75">
-                {item.productCode}
-              </div> */}
+
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{item.category}</h3>
                 <p className="text-gray-600">

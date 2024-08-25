@@ -7,8 +7,8 @@ import Button from "./Button";
 const EquipmentCategoryDetailPage = () => {
   const location = useLocation();
   const { product } = location.state || {};
-  console.log(product);
-  console.log(product, "fkmsdkfm");
+  // console.log(product);
+  // console.log(product, "fkmsdkfm");
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [activeTab, setActiveTab] = useState("description");
 
@@ -24,7 +24,7 @@ const EquipmentCategoryDetailPage = () => {
     <>
       <Navbarmenu />
       <div className="flex flex-col h-screen">
-        <div className="container mx-auto p-20 flex-grow">
+        <div className="container mx-auto sm:p-16 px-4 py-10 flex-grow">
           <div className="font-bold text-gray-600 w-full p-10 mb-10 border rounded-md bg-gray-100">
             {product.category}
           </div>
@@ -108,11 +108,19 @@ const EquipmentCategoryDetailPage = () => {
                   <table className="w-full text-left">
                     <tbody>
                       <tr>
-                        <th className="py-2 px-4 border-b border-gray-200 font-medium text-gray-700">
+                        <th className="py-2 px-4 border-b border-gray-300 font-medium text-gray-700">
                           Product Code
                         </th>
                         <td className="py-2 px-4 border-b border-gray-200 text-gray-600">
                           {product.productCode}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="py-2 px-4 border-b border-gray-200 font-medium text-gray-700">
+                          Equipment Category
+                        </th>
+                        <td className="py-2 px-4 border-b border-gray-200 text-gray-600">
+                          {product.category}
                         </td>
                       </tr>
                       <tr>
@@ -139,6 +147,26 @@ const EquipmentCategoryDetailPage = () => {
                           {product.applicableStandards}
                         </td>
                       </tr>
+                      <tr>
+                        <th className="py-2 px-4 border-b border-gray-200 font-medium text-gray-700">
+                          Range Available
+                        </th>
+                        <td className="py-2 px-4 border-b border-gray-200 text-gray-600">
+                          {product.rangeAvailable ? product.rangeAvailable : ""}
+                        </td>
+                      </tr>
+                      {product.testingApplications ? (
+                        <tr>
+                          <th className="py-2 px-4 border-b border-gray-200 font-medium text-gray-700">
+                            Testing Applications
+                          </th>
+                          <td className="py-2 px-4 border-b border-gray-200 text-gray-600">
+                            {product.testingApplications}
+                          </td>
+                        </tr>
+                      ) : (
+                        ""
+                      )}
                     </tbody>
                   </table>
                 )}
