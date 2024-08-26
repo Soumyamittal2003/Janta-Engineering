@@ -1,6 +1,7 @@
 import { Spinner } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import AdminNavBar from "../Components/AdminNavBar";
 
 const AddAdmin = () => {
   const [username, setUsername] = useState("");
@@ -29,10 +30,10 @@ const AddAdmin = () => {
           body: JSON.stringify({ name: username, email, password }), // Pass the necessary data
         }
       );
-  
+
       const result = await response.json();
       console.log("result", result);
-  
+
       if (result.success) {
         // Handle success scenario
         setLoding(false);
@@ -40,7 +41,7 @@ const AddAdmin = () => {
       } else {
         // Handle failure scenario
         setLoding(false);
-        alert(result.message)
+        alert(result.message);
         console.error("Failed to create admin:", result.message);
       }
     } catch (error) {
@@ -52,92 +53,95 @@ const AddAdmin = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded shadow-md w-full max-w-md"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center">Add Admin</h2>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
-            Username
-          </label>
-          <input
-            id="username"
-            type="text"
-            placeholder="@Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="user@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            placeholder="Pass@123"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="confirmPassword"
-          >
-            Confirm Password
-          </label>
-          <input
-            id="confirmPassword"
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-        {loading ? (
-          <button className="text-center w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-            <Spinner />
-          </button>
-        ) : (
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 transition-colors"
+    <>
+      <AdminNavBar />
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-8 rounded shadow-md w-full max-w-md"
         >
-          Add Admin
-        </button>)}
-        <div className="mt-6 text-center">
+          <h2 className="text-2xl font-bold mb-6 text-center">Add Admin</h2>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              id="username"
+              type="text"
+              placeholder="@Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="user@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Pass@123"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="confirmPassword"
+            >
+              Confirm Password
+            </label>
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+          </div>
+          {loading ? (
+            <button className="text-center w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
+              <Spinner />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 transition-colors"
+            >
+              Add Admin
+            </button>
+          )}
+          {/* <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               already have an account?{" "}
               <Link
@@ -147,10 +151,10 @@ const AddAdmin = () => {
                 Sign In
               </Link>
             </p>
-          </div>
-      </form>
-      
-    </div>
+          </div> */}
+        </form>
+      </div>
+    </>
   );
 };
 

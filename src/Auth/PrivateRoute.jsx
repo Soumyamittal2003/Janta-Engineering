@@ -14,12 +14,26 @@ import { Navigate, Outlet } from "react-router-dom";
 
 // This is a dummy authentication function, replace it with your actual authentication logic
 const isAuthenticated = () => {
-  // For example, check if the token exists in localStorage
-  return localStorage.getItem("token") !== null;
+  const tokenData = JSON.parse(localStorage.getItem("token"));
+
+  if (tokenData) {
+    const { expiration } = tokenData;
+
+    // Check if the current time is before the expiration time
+    if (Date.now() < expiration) {
+      return true;
+    } else {
+      // Token has expired, remove it from localStorage
+      localStorage.removeItem("token");
+      return false;
+    }
+  }
+
+  return false;
 };
 
 const PrivateRoute = () => {
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/admin/login" />;
+  return isAuthenticated() ? <Outlet /> : <Navigate to="/admin" />;
 };
 
 export default PrivateRoute;

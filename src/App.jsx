@@ -5,13 +5,13 @@ import EquipmentCategoryDetailPage from "./Components/Productdetailpage";
 import Contact from "./Pages/Contact";
 import ServiceAndCalibration from "./ServiceAndCalibration/ServiceAndCalibration";
 import NotFound from "./Pages/NotFound";
-import AdminLayout from "./Pages/AdminLayout";
 import AddAdmin from "./Pages/Addadmin";
 import AddProductForm from "./Pages/AddProduct";
 import WhoAreWe from "./AboutUs/WhoAreWe";
 import SignIn from "./Pages/Loginpage";
 import AdminProducts from "./Pages/AdminProducts";
 import PrivateRoute from "./Auth/PrivateRoute";
+import AdminDashboard from "./Pages/Admindashboard";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
         />
 
         {/* Public admin login route */}
-        <Route path="/admin/login" element={<SignIn />} />
+        <Route path="/admin" element={<SignIn />} />
 
         {/* Protected admin routes */}
         {/* <Route path="/admin" element={<PrivateRoute />}>
@@ -39,6 +39,13 @@ function App() {
           <Route path="adminProduct" element={<AdminProducts />} />
           <Route path="register" element={<AddAdmin />} />
         </Route> */}
+
+        <Route path="/admin/dashboard" element={<PrivateRoute />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="addEquipment" element={<AddProductForm />} />
+          <Route path="register" element={<AddAdmin />} />
+          <Route path="adminProduct" element={<AdminProducts />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

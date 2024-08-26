@@ -31,11 +31,17 @@ const SignIn = () => {
         setLoding(false);
         alert(result.message);
 
-        // Store token in localStorage or sessionStorage
-        localStorage.setItem("token", result.token);
+        // Set expiration time to 1 hour (3600000 milliseconds) from now
+        const expirationTime = Date.now() + 3600000;
+
+        // Store token and expiration time in localStorage
+        localStorage.setItem(
+          "token",
+          JSON.stringify({ token: result.token, expiration: expirationTime })
+        );
 
         // Redirect to the admin dashboard or another protected route
-        navigate("/admin/addEquipment");
+        navigate("/admin/dashboard");
       } else {
         setLoding(false);
         alert(result.message);
@@ -151,7 +157,7 @@ const SignIn = () => {
             </div>
           </form>
 
-          <div className="mt-6 text-center">
+          {/* <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{" "}
               <Link
@@ -161,7 +167,7 @@ const SignIn = () => {
                 Sign up
               </Link>
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
