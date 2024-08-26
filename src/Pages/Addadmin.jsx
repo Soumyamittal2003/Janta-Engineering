@@ -38,6 +38,10 @@ const AddAdmin = () => {
         // Handle success scenario
         setLoding(false);
         alert("Admin created successfully");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setUsername("");
       } else {
         // Handle failure scenario
         setLoding(false);
