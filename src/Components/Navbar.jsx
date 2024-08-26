@@ -192,15 +192,6 @@ export function Navbar() {
                     PULP TESTING RAW MATERIAL AGRO FIBRE
                   </Link>
                 </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{ title: "Items" }}
-                  >
-                    Items
-                  </Link>
-                </MenuItem>
               </MenuList>
               <Link to="/ServiceAndCalibration">
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">

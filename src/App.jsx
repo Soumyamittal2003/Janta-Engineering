@@ -3,7 +3,6 @@ import Homepage from "./Pages/Homepage";
 import ProductPage from "./Pages/ProductPage";
 import EquipmentCategoryDetailPage from "./Components/Productdetailpage";
 import Contact from "./Pages/Contact";
-import ServiceAndCalibration from "./ServiceAndCalibration/ServiceAndCalibration";
 import NotFound from "./Pages/NotFound";
 import AddAdmin from "./Pages/Addadmin";
 import AddProductForm from "./Pages/AddProduct";
@@ -12,6 +11,7 @@ import SignIn from "./Pages/Loginpage";
 import AdminProducts from "./Pages/AdminProducts";
 import PrivateRoute from "./Auth/PrivateRoute";
 import AdminDashboard from "./Pages/Admindashboard";
+import ServiceAndCalibration from "./ServiceAndCalibration/ServiceAndCalibration";
 
 function App() {
   return (
