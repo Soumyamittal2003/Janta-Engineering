@@ -50,7 +50,6 @@ const ProductPage = () => {
   return (
     <div>
       <Navbar />
-
       <div className="p-4 md:p-8 flex flex-col">
         <h2 className="text-center text-2xl md:text-3xl font-semibold mb-3">
           Engineering Products
@@ -59,7 +58,6 @@ const ProductPage = () => {
         <div className="font-bold text-gray-600 w-full p-10 mb-10 border rounded-md bg-gray-100">
           {title ? title : "All Products"}
         </div>
-
         <CautionBox />
         <div className="min-h-screen flex flex-wrap gap-4 justify-center">
           {isLoading ? (

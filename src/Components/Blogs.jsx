@@ -30,6 +30,7 @@ const Blogs = () => {
   }, []);
   console.log(equipmentData.slice(0, 6), "   xcvdc");
   return (
+  
     <section className="py-10 px-4">
       <div className="text-center mb-6">
         <h2 className="text-3xl font-bold">Products</h2>
@@ -61,8 +62,10 @@ const Blogs = () => {
             </div>
           </Link>
         ))}
+
       </div>
     </section>
+
   );
 };
 

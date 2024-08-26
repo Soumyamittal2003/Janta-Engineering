@@ -33,10 +33,11 @@ function Homepage() {
           </p>
         </div>
       </section>
-      <Testimonials />
+
       <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10">
         <CategoryCards />
       </div>
+      <Testimonials />
       <Blogs />
       <ContactUs />
       <div className="fixed bottom-5 right-5">
