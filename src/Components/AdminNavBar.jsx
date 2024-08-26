@@ -12,7 +12,7 @@ function AdminNavBar() {
 
   return (
     <>
-      <nav className="bg-blue-600 text-white py-4">
+      <nav className="bg-blue-600 text-white py-4 fixed top-0 w-full">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Admin Dashboard</h1>
           <div className="space-x-4">
