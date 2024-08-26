@@ -1,9 +1,12 @@
 import React from "react";
 import whatsapp from "../assets/photo/whatsapp-icon-png.png";
 
-const WhatsAppIcon = ({ phoneNumber }) => {
+const WhatsAppIcon = ({ phoneNumber, message }) => {
   const handleClick = () => {
-    const whatsappUrl = `https://wa.me/${phoneNumber}`;
+    const encodedMessage = encodeURIComponent(message);
+    console.log(encodedMessage);
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
   };
 

@@ -58,7 +58,10 @@ function WhoAreWe() {
         </p>
       </div>
       <div className="fixed bottom-5 right-5">
-        <WhatsAppIcon phoneNumber="9084730912" />
+        <WhatsAppIcon
+          phoneNumber="9084730912"
+          message="Hello, I would like to know more about your services!"
+        />
       </div>
       <Footer />
     </>

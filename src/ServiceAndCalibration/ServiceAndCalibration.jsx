@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import WhatsAppIcon from "../Components/WhatsAppIcon";
 
 function ServiceAndCalibration() {
   return (
@@ -65,6 +66,12 @@ function ServiceAndCalibration() {
           are ex-stock most of the times. If they are not available in some of
           the special cases then they can be manufactured on customer’s request.{" "}
         </p>
+      </div>
+      <div className="fixed bottom-5 right-5">
+        <WhatsAppIcon
+          phoneNumber="9084730912"
+          message="Hello, I would like to know more about your services!"
+        />
       </div>
       <Footer />
     </>
