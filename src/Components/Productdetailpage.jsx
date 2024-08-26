@@ -113,7 +113,7 @@ const EquipmentCategoryDetailPage = () => {
                           Product Code
                         </th>
                         <td className="py-2 px-4 border-b border-gray-200 text-gray-600">
-                          {/* {product.productCode} */}
+                          {product.productCode}
                         </td>
                       </tr>
                       <tr>

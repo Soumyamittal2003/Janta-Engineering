@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
           <div className="text-md text-gray-600 font-semibold">
             {product.category}
           </div>
-          {/* <div className="text-gray-500">Code: {product.productCode}</div> */}
+          <div className="text-gray-500">Code: {product.productCode}</div>
         </div>
       </Link>
     </div>
