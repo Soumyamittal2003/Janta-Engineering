@@ -12,7 +12,7 @@ const CautionBox = () => {
           a high-quality end product suitable for printing, converting,
           packaging, and various other applications. The outcome is influenced
           by several factors, including its thickness, bursting strength,
-          stiffness, roughness, tensile strength, water absorbency, etc. UEC
+          stiffness, roughness, tensile strength, water absorbency, etc. JE
           offers a comprehensive range of products that cater to all your paper
           testing requirements, ensuring optimal results.
         </p>
