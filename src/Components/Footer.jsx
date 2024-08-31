@@ -79,6 +79,9 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
           <ul>
             <li className="mb-2 flex items-center">
+              <FaPhone className="mr-2" /> +91 908 473 0912
+            </li>
+            <li className="mb-2 flex items-center">
               <FaPhone className="mr-2" /> +91 941 213 0912
             </li>
             <li className="mb-2 flex items-center">
