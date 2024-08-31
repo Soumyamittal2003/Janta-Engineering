@@ -18,7 +18,6 @@ function AdminProducts() {
     applicableStandards: "",
     rangeAvailable: "",
     testingApplications: "",
-    images: [],
     applicationType: "",
     extras: "",
   });
@@ -89,7 +88,6 @@ function AdminProducts() {
       applicableStandards: data?.applicableStandards,
       rangeAvailable: data?.rangeAvailable,
       testingApplications: data?.testingApplications,
-      images: data?.images,
       applicationType: data?.applicationType,
       extras: data?.extras,
     });
@@ -133,32 +131,16 @@ function AdminProducts() {
   const handleSubmit = async (e) => {
     setLoding(true);
     e.preventDefault();
-    console.log(formData);
-    console.log(formData, "    what we sending");
-    const formPayload = new FormData();
-    formPayload.append("productCode", formData.productCode);
-    formPayload.append("productName", formData.productName);
-    formPayload.append("description", formData.description);
-    formPayload.append("category", formData.category); // Updated field
-    formPayload.append("applicationType", formData.applicationType);
-    formPayload.append("extras", formData.extras);
-    // formPayload.append("images", formData.images);
-    formPayload.append("applicableStandards", [formData.applicableStandards]);
-    formPayload.append("dimensions", formData.dimensions);
-    formPayload.append("rangeAvailable", formData.rangeAvailable);
-    formPayload.append("weight", formData.weight);
-    formPayload.append("testingApplications", formData.testingApplications);
-    console.log("00000", formPayload);
 
     try {
       const response = await fetch(
         `https://janta-engineering-server.onrender.com/api/v1/equipment/equipment/${id}`,
         {
           method: "PUT",
-          //   headers:
-          //     "Content-Type": "application/json",
-          //   },
-          body: formPayload,
+
+          headers: { "Content-Type": "application/json" },
+
+          body: JSON.stringify(formData),
         }
       );
       const result = await response.json();
