@@ -18,11 +18,44 @@ function AdminProducts() {
     applicableStandards: "",
     rangeAvailable: "",
     testingApplications: "",
-    applicationType: "",
+    applicationType: [],
     extras: "",
   });
   const [isCustomCategory, setIsCustomCategory] = useState(false);
   const [loading, setLoding] = useState(false);
+  const [isLoading, setIsLoding] = useState(false);
+
+  const applications = [
+    "NEWSPRINT",
+    "WRITING PRINTING/COPIER",
+    "DUPLEX AND ART PAPER",
+    "KRAFT LINER/FLUTING PAPER/SACK",
+    "CORRUGATED FIBRE BOARD BOX BOARD",
+    "TISSUE & SOFT MATERIAL",
+    "PULP TESTING RAW MATERIAL RECYCLED FIBRE",
+    "PULP TESTING RAW MATERIAL WOOD FIBRE",
+    "PULP TESTING RAW MATERIAL AGRO FIBRE",
+  ];
+
+  const handleApplicationChange = (e) => {
+    const options = Array.from(e.target.selectedOptions).map(
+      (option) => option.value
+    );
+    setFormData((prevState) => ({
+      ...prevState,
+      applicationType: options,
+    }));
+  };
+
+  // Remove application type (Capsule Click)
+  const handleRemoveApplicationType = (typeToRemove) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      applicationType: prevState.applicationType.filter(
+        (type) => type !== typeToRemove
+      ),
+    }));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +87,7 @@ function AdminProducts() {
   };
 
   const getEquipment = async () => {
+    setIsLoding(true);
     try {
       const response = await fetch(
         "https://janta-engineering-server.onrender.com/api/v1/equipment/equipment"
@@ -61,11 +95,14 @@ function AdminProducts() {
       const result = await response.json();
       console.log(result);
       if (result.success) {
+        setIsLoding(false);
         setEquipmentData(result.equipment);
       } else {
+        setIsLoding(false);
         console.error("Failed to fetch equipment data:", result.message);
       }
     } catch (error) {
+      setIsLoding(false);
       console.error("Error fetching equipment data:", error);
     }
   };
@@ -159,7 +196,7 @@ function AdminProducts() {
           rangeAvailable: "",
           testingApplications: "",
           images: [],
-          applicationType: "",
+          applicationType: [],
           extras: "",
         });
         setShowForm(false);
@@ -340,6 +377,49 @@ function AdminProducts() {
             </div>
           </div>
 
+          <div className="md:flex md:space-x-4">
+            <div className="md:w-1/2 mb-5">
+              <label className="block mb-1 font-medium">Application Type</label>
+              <select
+                name="applicationType"
+                value={formData.applicationType}
+                onChange={handleApplicationChange}
+                multiple
+                className="w-full border border-gray-300 p-2 rounded-md"
+              >
+                {applications.map((e, id) => {
+                  return (
+                    <option key={id} value={e}>
+                      {e}
+                    </option>
+                  );
+                })}
+              </select>
+              <h6 className="text-red-400">
+                for multiple selection ctrl+select{" "}
+              </h6>
+            </div>
+          </div>
+
+          {/* Display Selected Application Types as Capsules */}
+          <div className="flex flex-wrap space-x-2 mt-4">
+            {formData.applicationType.map((type, index) => (
+              <div
+                key={index}
+                className="bg-blue-500 text-white px-3 py-1 rounded-full flex items-center space-x-2 mb-2"
+              >
+                <span>{type}</span>
+                <button
+                  type="button"
+                  className="text-white hover:bg-blue-700 px-2 rounded-full"
+                  onClick={() => handleRemoveApplicationType(type)}
+                >
+                  &times;
+                </button>
+              </div>
+            ))}
+          </div>
+
           {/* <label className="text-center block pt-5 font-medium">Product-Consumables</label>
                 <hr className="border-b-2 border-blue-500 w-20 mx-auto" />
                 <div className="flex space-x-4">
@@ -384,19 +464,25 @@ function AdminProducts() {
     <>
       <AdminNavBar />
       <div className="container mx-auto px-4 py-8 mt-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {equipmentData.map((equipment) => (
-            <EquipmentList
-              key={equipment.id}
-              image={equipment.images ? equipment.images[0] : ""}
-              name={equipment.productName}
-              category={equipment.category}
-              uniqueCode={equipment.productCode}
-              onEdit={() => handelEdit(equipment._id, equipment)}
-              onDelete={() => handelDelete(equipment._id)}
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="flex align-center justify-center w-full min-h-screen">
+            <Spinner className="text-center" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {equipmentData.map((equipment) => (
+              <EquipmentList
+                key={equipment.id}
+                image={equipment.images ? equipment.images[0] : ""}
+                name={equipment.productName}
+                category={equipment.category}
+                uniqueCode={equipment.productCode}
+                onEdit={() => handelEdit(equipment._id, equipment)}
+                onDelete={() => handelDelete(equipment._id)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

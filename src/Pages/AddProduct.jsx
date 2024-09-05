@@ -1,8 +1,10 @@
 import { Spinner } from "@material-tailwind/react";
 import React, { useState } from "react";
 import AdminNavBar from "../Components/AdminNavBar";
+import { useNavigate } from "react-router-dom";
 
 const AddProductForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     productName: "",
     category: "",
@@ -14,12 +16,24 @@ const AddProductForm = () => {
     rangeAvailable: "",
     testingApplications: "",
     images: [],
-    applicationType: "",
+    applicationType: [],
     extras: "",
   });
 
   const [isCustomCategory, setIsCustomCategory] = useState(false);
   const [loading, setLoding] = useState(false);
+
+  const applications = [
+    "NEWSPRINT",
+    "WRITING PRINTING/COPIER",
+    "DUPLEX AND ART PAPER",
+    "KRAFT LINER/FLUTING PAPER/SACK",
+    "CORRUGATED FIBRE BOARD BOX BOARD",
+    "TISSUE & SOFT MATERIAL",
+    "PULP TESTING RAW MATERIAL RECYCLED FIBRE",
+    "PULP TESTING RAW MATERIAL WOOD FIBRE",
+    "PULP TESTING RAW MATERIAL AGRO FIBRE",
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,11 +65,31 @@ const AddProductForm = () => {
     }
   };
 
+  // const handleApplicationChange = (e) => {
+  //   const value = e.target.value;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     applicationType: value,
+  //   }));
+  // };
+
   const handleApplicationChange = (e) => {
-    const value = e.target.value;
+    const options = Array.from(e.target.selectedOptions).map(
+      (option) => option.value
+    );
     setFormData((prevState) => ({
       ...prevState,
-      applicationType: value,
+      applicationType: options,
+    }));
+  };
+
+  // Remove application type (Capsule Click)
+  const handleRemoveApplicationType = (typeToRemove) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      applicationType: prevState.applicationType.filter(
+        (type) => type !== typeToRemove
+      ),
     }));
   };
 
@@ -69,7 +103,10 @@ const AddProductForm = () => {
     formPayload.append("productName", formData.productName);
     formPayload.append("description", formData.description);
     formPayload.append("category", formData.category); // Updated field
-    formPayload.append("applicationType", formData.applicationType);
+    // formPayload.append("applicationType", formData.applicationType);
+    formData.applicationType.forEach((item, index) => {
+      formPayload.append(`applicationType`, item);
+    });
     formPayload.append("extras", formData.extras);
     formData.images.forEach((file, index) => {
       formPayload.append(`images`, file);
@@ -110,9 +147,10 @@ const AddProductForm = () => {
           rangeAvailable: "",
           testingApplications: "",
           images: [],
-          applicationType: "",
+          applicationType: [],
           extras: "",
         });
+        navigate("/admin/dashboard/adminProduct");
       } else {
         setLoding(false);
         console.error("Failed to fetch equipment data:", result.message);
@@ -140,8 +178,8 @@ const AddProductForm = () => {
               required
             />
           </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
+          <div className="md:flex md:space-x-4">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">Product Name</label>
               <input
                 type="text"
@@ -152,7 +190,7 @@ const AddProductForm = () => {
                 required
               />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">Category</label>
               <select
                 name="category"
@@ -201,7 +239,7 @@ const AddProductForm = () => {
             />
           </div>
 
-          <div className="w-1/2">
+          <div className="md:w-1/2">
             <label className="block mb-1 font-medium">Optional on Demand</label>
             <input
               type="text"
@@ -217,7 +255,7 @@ const AddProductForm = () => {
           </label>
           <hr className="border-b-2 border-blue-500 w-20 mx-auto" />
           <div className="flex space-x-4">
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">Product Code</label>
               <input
                 type="text"
@@ -228,7 +266,7 @@ const AddProductForm = () => {
                 required
               />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">Weight</label>
               <input
                 type="text"
@@ -240,8 +278,8 @@ const AddProductForm = () => {
             </div>
           </div>
 
-          <div className="flex space-x-4">
-            <div className="w-1/2">
+          <div className="md:flex md:space-x-4">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">Dimensions</label>
               <input
                 type="text"
@@ -251,7 +289,7 @@ const AddProductForm = () => {
                 className="w-full border border-gray-300 p-2 rounded-md"
               />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">
                 Applicable Standards
               </label>
@@ -265,8 +303,8 @@ const AddProductForm = () => {
             </div>
           </div>
 
-          <div className="flex space-x-4">
-            <div className="w-1/2">
+          <div className="md:flex md:space-x-4">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">Range Available</label>
               <input
                 type="text"
@@ -276,7 +314,7 @@ const AddProductForm = () => {
                 className="w-full border border-gray-300 p-2 rounded-md"
               />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <label className="block mb-1 font-medium">
                 Testing Applications
               </label>
@@ -289,8 +327,8 @@ const AddProductForm = () => {
               />
             </div>
           </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2 mb-5">
+          {/* <div className="md:flex md:space-x-4">
+            <div className="md:w-1/2 mb-5">
               <label className="block mb-1 font-medium">ApplicationType</label>
               <select
                 name="applicationType"
@@ -303,26 +341,54 @@ const AddProductForm = () => {
                 <option value="Category2">Category 2</option>
               </select>
             </div>
+          </div> */}
+
+          <div className="md:flex md:space-x-4">
+            <div className="md:w-1/2 mb-5">
+              <label className="block mb-1 font-medium">Application Type</label>
+              <select
+                name="applicationType"
+                value={formData.applicationType}
+                onChange={handleApplicationChange}
+                multiple
+                className="w-full border border-gray-300 p-2 rounded-md"
+              >
+                {applications.map((e, id) => {
+                  return (
+                    <option key={id} value={e}>
+                      {e}
+                    </option>
+                  );
+                })}
+              </select>
+              <h6 className="text-red-400">
+                for multiple selection ctrl+select{" "}
+              </h6>
+            </div>
           </div>
-          {/* <label className="text-center block pt-5 font-medium">
-          Product-Consumables
-        </label>
-        <hr className="border-b-2 border-blue-500 w-20 mx-auto" />
-        <div className="flex space-x-4">
-          <div className="w-1/2">
-            <label className="block mb-1 font-medium">Accessories</label>
-            <input
-              type="text"
-              name="accessories"
-              value={formData.accessories}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 p-2 rounded-md"
-            />
+
+          {/* Display Selected Application Types as Capsules */}
+          <div className="flex flex-wrap space-x-2 mt-4">
+            {formData.applicationType.map((type, index) => (
+              <div
+                key={index}
+                className="bg-blue-500 text-white px-3 py-1 rounded-full flex items-center space-x-2 mb-2"
+              >
+                <span>{type}</span>
+                <button
+                  type="button"
+                  className="text-white hover:bg-blue-700 px-2 rounded-full"
+                  onClick={() => handleRemoveApplicationType(type)}
+                >
+                  &times;
+                </button>
+              </div>
+            ))}
           </div>
-        </div> */}
+
           {loading ? (
             <button className="text-center w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-              <Spinner />
+              <Spinner className="text-center" />
             </button>
           ) : (
             <button

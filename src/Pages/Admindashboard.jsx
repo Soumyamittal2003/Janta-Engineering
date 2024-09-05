@@ -7,8 +7,8 @@ const AdminDashboard = () => {
       {/* Navigation Bar */}
       <AdminNavBar />
       {/* Main Content */}
-      <div className="flex justify-center items-center container mx-auto mt-10">
-        <h2 className="text-xl font-semibold text-center">
+      <div className="flex justify-center items-center container mx-auto mt-10 min-h-screen">
+        <h2 className="text-xl font-semibold text-center text-black">
           Welcome to the Admin Dashboard
         </h2>
         {/* Other dashboard content can go here */}
