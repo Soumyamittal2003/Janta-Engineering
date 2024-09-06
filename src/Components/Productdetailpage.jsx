@@ -1,24 +1,78 @@
 import React, { useState } from "react";
 import Footer from "./Footer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Navbar from "./Navbar";
 import WhatsAppIcon from "./WhatsAppIcon";
 
 const EquipmentCategoryDetailPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { product } = location.state || {};
-  // console.log(product);
-  // console.log(product, "fkmsdkfm");
+  const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [activeTab, setActiveTab] = useState("description");
+  const message = `Hello, I would like to know more about this product, productCode = ${product.productCode}, productName = ${product.productName}, productCategory = ${product.category} !`;
 
-  const handleClick = () => {
-    alert("This features will be available soon...");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    productDetails: message,
+  });
+  console.log(formData);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleEnquiry = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   const handleQuestion = () => {
-    alert("This features will be available soon...");
+    navigate("/contact-us");
+  };
+
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert("Empty fields");
+      setShowModal(false);
+      return;
+    }
+    try {
+      const response = await fetch(
+        "https://janta-engineering-server.onrender.com/api/v1/users/enquiry",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const res = await response.json();
+      console.log(res, "000");
+
+      if (res.success == true) {
+        setFormData({ name: "", email: "", phone: "" });
+        alert("Inquiry sent successfully!");
+        setShowModal(false);
+      }
+      alert(res.message);
+      setFormData({ name: "", email: "", phone: "" });
+      setShowModal(false);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+      setShowModal(false);
+    }
   };
 
   return (
@@ -188,12 +242,85 @@ const EquipmentCategoryDetailPage = () => {
               </div>
               <div className="mt-20 flex justify-start items-center">
                 <div className="flex justify-between w-full">
-                  <Button
-                    onClick={handleClick}
-                    className="bg-green-500 hover:bg-green-600"
-                  >
-                    SEND AN ENQUIRY
-                  </Button>
+                  <div>
+                    <button
+                      onClick={handleEnquiry}
+                      className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
+                    >
+                      SEND AN ENQUIRY
+                    </button>
+
+                    {showModal && (
+                      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                        <div className="bg-white p-6 rounded-lg w-full max-w-md mx-4 md:mx-auto">
+                          <h2 className="text-2xl font-semibold mb-4">
+                            Enquiry Form
+                          </h2>
+                          <div>
+                            <div className="mb-4">
+                              <label className="block text-gray-700">
+                                Name
+                              </label>
+                              <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                                placeholder="Enter your name"
+                                required
+                              />
+                            </div>
+                            <div className="mb-4">
+                              <label className="block text-gray-700">
+                                Email
+                              </label>
+                              <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                                placeholder="Enter your email"
+                                required
+                              />
+                            </div>
+                            <div className="mb-4">
+                              <label className="block text-gray-700">
+                                Phone
+                              </label>
+                              <input
+                                type="tel"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                                placeholder="Enter your phone number"
+                                required
+                              />
+                            </div>
+                            <div className="flex justify-between">
+                              <button
+                                type="button"
+                                onClick={closeModal}
+                                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                onClick={() => {
+                                  handleSubmit();
+                                }}
+                                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
+                              >
+                                Submit
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                   <Button
                     onClick={handleQuestion}
                     className="bg-yellow-400 hover:bg-yellow-500"
