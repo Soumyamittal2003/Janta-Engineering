@@ -28,7 +28,7 @@ const Sidebar = ({
                 className={`p-2 cursor-pointer hover:bg-gray-400 border-b-2 ${
                   title == category ? "bg-gray-200" : ""
                 }`}
-                onClick={() => onCategorySelect(category)}
+                onClick={() => onCategorySelect(category, "category")}
               >
                 {category}
               </li>
@@ -53,7 +53,7 @@ const Sidebar = ({
                 className={`p-2 cursor-pointer hover:bg-gray-400 border-b-2 ${
                   title == application ? "bg-gray-200" : ""
                 }`}
-                onClick={() => onApplicationSelect(application)}
+                onClick={() => onApplicationSelect(application, "application")}
               >
                 {application}
               </li>

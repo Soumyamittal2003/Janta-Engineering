@@ -30,15 +30,15 @@ export function Navbar() {
     },
   ];
 
-  const handleNavigation = (title) => {
+  const handleNavigation = (title, type) => {
     const currentPath = location.pathname;
     const currentState = location.state;
 
     if (currentPath === "/product" && currentState?.title === title) {
       navigate("/temp", { replace: true });
-      navigate("/product", { state: { title } });
+      navigate("/product", { state: { title, type } });
     } else {
-      navigate("/product", { state: { title } });
+      navigate("/product", { state: { title, type } });
     }
   };
   return (
@@ -79,7 +79,7 @@ export function Navbar() {
                   <MenuList className="ml-72  bg-white shadow-lg rounded-md p-3 z-30">
                     {nestedMenuItems.map(({ title }, key) => (
                       <MenuItem
-                        onClick={() => handleNavigation(title)}
+                        onClick={() => handleNavigation(title, "category")}
                         key={key}
                         className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3 "
                       >
@@ -89,13 +89,17 @@ export function Navbar() {
                   </MenuList>
                 </Menu>
                 <MenuItem
-                  onClick={() => handleNavigation("HANDMADE PAPER MACHINES")}
+                  onClick={() =>
+                    handleNavigation("HANDMADE PAPER MACHINES", "category")
+                  }
                   className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3"
                 >
                   <Link>HANDMADE PAPER MACHINES</Link>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES")}
+                  onClick={() =>
+                    handleNavigation("PRAKRITIK PAINT MACHINES", "category")
+                  }
                   className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3"
                 >
                   <Link>PRAKRITIK PAINT MACHINES</Link>
@@ -112,7 +116,7 @@ export function Navbar() {
                 <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "NEWSPRINT" }}
+                    state={{ title: "NEWSPRINT", type: "application" }}
                   >
                     {" "}
                     NEWSPRINT
@@ -122,7 +126,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "WRITING PRINTING/COPIER" }}
+                    state={{
+                      title: "WRITING PRINTING/COPIER",
+                      type: "application",
+                    }}
                   >
                     WRITING PRINTING/COPIER
                   </Link>
@@ -131,7 +138,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "DUPLEX AND ART PAPER" }}
+                    state={{
+                      title: "DUPLEX AND ART PAPER",
+                      type: "application",
+                    }}
                   >
                     DUPLEX AND ART PAPER
                   </Link>
@@ -140,7 +150,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "KRAFT LINER/FLUTING PAPER/SACK" }}
+                    state={{
+                      title: "KRAFT LINER/FLUTING PAPER/SACK",
+                      type: "application",
+                    }}
                   >
                     KRAFT LINER/FLUTING PAPER/SACK
                   </Link>
@@ -149,7 +162,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "CORRUGATED FIBRE BOARD BOX BOARD" }}
+                    state={{
+                      title: "CORRUGATED FIBRE BOARD BOX BOARD",
+                      type: "application",
+                    }}
                   >
                     CORRUGATED FIBRE BOARD BOX BOARD
                   </Link>
@@ -158,7 +174,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "TISSUE & SOFT MATERIAL" }}
+                    state={{
+                      title: "TISSUE & SOFT MATERIAL",
+                      type: "application",
+                    }}
                   >
                     TISSUE & SOFT MATERIAL
                   </Link>
@@ -169,6 +188,7 @@ export function Navbar() {
                     to={{ pathname: "/product" }}
                     state={{
                       title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE",
+                      type: "application",
                     }}
                   >
                     PULP TESTING RAW MATERIAL RECYCLED FIBRE
@@ -178,7 +198,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "PULP TESTING RAW MATERIAL WOOD FIBRE" }}
+                    state={{
+                      title: "PULP TESTING RAW MATERIAL WOOD FIBRE",
+                      type: "application",
+                    }}
                   >
                     PULP TESTING RAW MATERIAL WOOD FIBRE
                   </Link>
@@ -187,7 +210,10 @@ export function Navbar() {
                   {" "}
                   <Link
                     to={{ pathname: "/product" }}
-                    state={{ title: "PULP TESTING RAW MATERIAL AGRO FIBRE" }}
+                    state={{
+                      title: "PULP TESTING RAW MATERIAL AGRO FIBRE",
+                      type: "application",
+                    }}
                   >
                     PULP TESTING RAW MATERIAL AGRO FIBRE
                   </Link>
@@ -247,7 +273,7 @@ export function Navbar() {
                 <MenuList className="bg-white shadow-lg rounded-md p-3 z-30 ">
                   {nestedMenuItems.map(({ title }, key) => (
                     <MenuItem
-                      onClick={() => handleNavigation(title)}
+                      onClick={() => handleNavigation(title, "category")}
                       key={key}
                       className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
                     >
@@ -257,13 +283,17 @@ export function Navbar() {
                 </MenuList>
               </Menu>
               <MenuItem
-                onClick={() => handleNavigation("HANDMADE PAPER MACHINES")}
+                onClick={() =>
+                  handleNavigation("HANDMADE PAPER MACHINES", "category")
+                }
                 className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
               >
                 <Link>HANDMADE PAPER MACHINES</Link>
               </MenuItem>
               <MenuItem
-                onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES")}
+                onClick={() =>
+                  handleNavigation("PRAKRITIK PAINT MACHINES", "category")
+                }
                 className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
               >
                 <Link>PRAKRITIK PAINT MACHINES</Link>
@@ -280,7 +310,7 @@ export function Navbar() {
               <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "NEWSPRINT" }}
+                  state={{ title: "NEWSPRINT", type: "application" }}
                 >
                   {" "}
                   NEWSPRINT
@@ -290,7 +320,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "WRITING PRINTING/COPIER" }}
+                  state={{
+                    title: "WRITING PRINTING/COPIER",
+                    type: "application",
+                  }}
                 >
                   WRITING PRINTING/COPIER
                 </Link>
@@ -299,7 +332,7 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "DUPLEX AND ART PAPER" }}
+                  state={{ title: "DUPLEX AND ART PAPER", type: "application" }}
                 >
                   DUPLEX AND ART PAPER
                 </Link>
@@ -308,7 +341,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "KRAFT LINER/FLUTING PAPER/SACK" }}
+                  state={{
+                    title: "KRAFT LINER/FLUTING PAPER/SACK",
+                    type: "application",
+                  }}
                 >
                   KRAFT LINER/FLUTING PAPER/SACK
                 </Link>
@@ -317,7 +353,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "CORRUGATED FIBRE BOARD BOX BOARD" }}
+                  state={{
+                    title: "CORRUGATED FIBRE BOARD BOX BOARD",
+                    type: "application",
+                  }}
                 >
                   CORRUGATED FIBRE BOARD BOX BOARD
                 </Link>
@@ -326,7 +365,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "TISSUE & SOFT MATERIAL" }}
+                  state={{
+                    title: "TISSUE & SOFT MATERIAL",
+                    type: "application",
+                  }}
                 >
                   TISSUE & SOFT MATERIAL
                 </Link>
@@ -335,7 +377,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE" }}
+                  state={{
+                    title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE",
+                    type: "application",
+                  }}
                 >
                   PULP TESTING RAW MATERIAL RECYCLED FIBRE
                 </Link>
@@ -344,7 +389,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "PULP TESTING RAW MATERIAL WOOD FIBRE" }}
+                  state={{
+                    title: "PULP TESTING RAW MATERIAL WOOD FIBRE",
+                    type: "application",
+                  }}
                 >
                   PULP TESTING RAW MATERIAL WOOD FIBRE
                 </Link>
@@ -353,7 +401,10 @@ export function Navbar() {
                 {" "}
                 <Link
                   to={{ pathname: "/product" }}
-                  state={{ title: "PULP TESTING RAW MATERIAL AGRO FIBRE" }}
+                  state={{
+                    title: "PULP TESTING RAW MATERIAL AGRO FIBRE",
+                    type: "application",
+                  }}
                 >
                   PULP TESTING RAW MATERIAL AGRO FIBRE
                 </Link>

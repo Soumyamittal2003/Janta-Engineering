@@ -222,6 +222,21 @@ const EquipmentCategoryDetailPage = () => {
                       ) : (
                         ""
                       )}
+
+                      {product.applicationType ? (
+                        <tr>
+                          <th className="py-2 px-4 border-b border-gray-200 font-medium text-gray-700">
+                            ApplicationType
+                          </th>
+                          <td className="py-2 px-4 border-b border-gray-200 text-gray-600">
+                            {product.applicationType.map((ele) => {
+                              return `${ele},  `;
+                            })}
+                          </td>
+                        </tr>
+                      ) : (
+                        ""
+                      )}
                     </tbody>
                   </table>
                 )}

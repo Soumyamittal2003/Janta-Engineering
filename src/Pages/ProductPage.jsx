@@ -10,7 +10,7 @@ import Sidebar from "../Components/Sidebar";
 
 const ProductPage = () => {
   const location = useLocation();
-  const { title } = location.state || "";
+  const { title, type } = location.state || "";
 
   const [equipmentData, setEquipmentData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,13 +47,21 @@ const ProductPage = () => {
       if (result.success) {
         setIsLoading(false);
         if (!title) {
-          return setEquipmentData(result.equipment);
+          setEquipmentData(result.equipment);
+        } else if (type == "category") {
+          const filteredCategory = result.equipment.filter((ele) => {
+            return ele.category.toLowerCase() === title.toLowerCase();
+          });
+          setEquipmentData(filteredCategory);
+        } else if (type == "application") {
+          const filteredCategory = result.equipment.filter((ele) => {
+            // Check if title is included in the applicationType array (case-insensitive)
+            return ele.applicationType.some(
+              (type) => type.toLowerCase() === title.toLowerCase()
+            );
+          });
+          setEquipmentData(filteredCategory);
         }
-        const filteredCategory = result.equipment.filter((ele) => {
-          return ele.category.toLowerCase() === title.toLowerCase();
-        });
-
-        setEquipmentData(filteredCategory);
       } else {
         setIsLoading(false);
         console.error("Failed to fetch equipment data:", result.message);
@@ -68,12 +76,12 @@ const ProductPage = () => {
     getEquipment();
   }, [title]);
 
-  const handleCategorySelect = (title) => {
-    navigate("/product", { state: { title } });
+  const handleCategorySelect = (title, type) => {
+    navigate("/product", { state: { title, type } });
   };
 
-  const handleApplicationSelect = (title) => {
-    navigate("/product", { state: { title } });
+  const handleApplicationSelect = (title, type) => {
+    navigate("/product", { state: { title, type } });
   };
 
   return (
@@ -98,7 +106,7 @@ const ProductPage = () => {
             />
           </div>
           <div className="w-full md:w-3/4 p-2">
-            <CautionBox />
+            {type === "category" ? <CautionBox title={title} /> : ""}
             <div className="min-h-screen flex flex-wrap gap-4 justify-center">
               {isLoading ? (
                 <Spinner />
