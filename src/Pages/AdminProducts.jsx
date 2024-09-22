@@ -113,7 +113,6 @@ function AdminProducts() {
 
   async function handelEdit(id, data) {
     setShowForm(true);
-    console.log(id, "   dmvkfd");
     setId(id);
     setFormData({
       productName: data?.productName,
