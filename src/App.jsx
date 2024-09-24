@@ -15,7 +15,7 @@ import ServiceAndCalibration from "./ServiceAndCalibration/ServiceAndCalibration
 
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/product" element={<ProductPage />} />
