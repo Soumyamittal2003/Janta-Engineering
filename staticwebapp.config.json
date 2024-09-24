@@ -3,6 +3,42 @@
     {
       "route": "/",
       "rewrite": "/index.html"
+    },
+    {
+      "route": "/product",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/contact-us",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/WhoAreWe",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/equipment-category",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/ServiceAndCalibration",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/admin",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/admin/dashboard",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
     }
-  ]
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "/css/*", "/js/*", "/favicon.ico"]
+  }
 }
