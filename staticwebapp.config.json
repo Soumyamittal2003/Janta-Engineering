@@ -28,10 +28,7 @@
       "route": "/admin",
       "rewrite": "/index.html"
     },
-    {
-      "route": "/admin/dashboard",
-      "rewrite": "/index.html"
-    },
+    
     {
       "route": "/*",
       "rewrite": "/index.html"
