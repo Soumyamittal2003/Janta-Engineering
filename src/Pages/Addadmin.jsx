@@ -32,7 +32,6 @@ const AddAdmin = () => {
       );
 
       const result = await response.json();
-      console.log("result", result);
 
       if (result.success) {
         // Handle success scenario
@@ -53,7 +52,6 @@ const AddAdmin = () => {
       setLoding(false);
       console.error("Error creating admin:", error);
     }
-    console.log({ username, email, password });
   };
 
   return (

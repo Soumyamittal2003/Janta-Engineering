@@ -4,7 +4,6 @@ import whatsapp from "../assets/photo/whatsapp-icon-png.png";
 const WhatsAppIcon = ({ phoneNumber, message }) => {
   const handleClick = () => {
     const encodedMessage = encodeURIComponent(message);
-    console.log(encodedMessage);
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");

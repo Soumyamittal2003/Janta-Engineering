@@ -20,7 +20,6 @@ const EquipmentCategoryDetailPage = () => {
     phone: "",
     productDetails: message,
   });
-  console.log(formData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +57,6 @@ const EquipmentCategoryDetailPage = () => {
       );
 
       const res = await response.json();
-      console.log(res, "000");
 
       if (res.success == true) {
         setFormData({ name: "", email: "", phone: "" });

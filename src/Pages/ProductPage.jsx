@@ -45,30 +45,34 @@ const ProductPage = () => {
       const result = await response.json();
 
       if (result.success) {
-        setIsLoading(false);
         if (!title) {
           setEquipmentData(result.equipment);
-        } else if (type == "category") {
+        } else if (type === "category") {
           const filteredCategory = result.equipment.filter((ele) => {
             return ele.category.toLowerCase() === title.toLowerCase();
           });
           setEquipmentData(filteredCategory);
-        } else if (type == "application") {
-          const filteredCategory = result.equipment.filter((ele) => {
+        } else if (type === "application") {
+          const filteredApplication = result.equipment.filter((ele) => {
             // Check if title is included in the applicationType array (case-insensitive)
             return ele.applicationType.some(
-              (type) => type.toLowerCase() === title.toLowerCase()
+              (appType) => appType.toLowerCase() === title.toLowerCase()
             );
+          });
+          setEquipmentData(filteredApplication);
+        } else {
+          const filteredCategory = result.equipment.filter((ele) => {
+            return ele.category.toLowerCase() === title.toLowerCase();
           });
           setEquipmentData(filteredCategory);
         }
       } else {
-        setIsLoading(false);
         console.error("Failed to fetch equipment data:", result.message);
       }
     } catch (error) {
-      setIsLoading(false);
       console.error("Error fetching equipment data:", error);
+    } finally {
+      setIsLoading(false); // Ensure this is called regardless of success or failure
     }
   };
 

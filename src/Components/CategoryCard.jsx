@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import physicalPropertyImage from "../assets/photo/7.jpg";
 import pulpTestingImage from "../assets/photo/2.jpeg";

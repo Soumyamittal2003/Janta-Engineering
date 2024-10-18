@@ -93,7 +93,7 @@ function AdminProducts() {
         "https://janta-engineering-server.onrender.com/api/v1/equipment/equipment"
       );
       const result = await response.json();
-      console.log(result);
+
       if (result.success) {
         setIsLoding(false);
         setEquipmentData(result.equipment);
@@ -148,7 +148,6 @@ function AdminProducts() {
           }
         );
         const result = await response.json();
-        console.log("result", result);
 
         if (result.success) {
           setRelode(!relode);
@@ -180,7 +179,6 @@ function AdminProducts() {
         }
       );
       const result = await response.json();
-      console.log("result", result);
 
       if (result.success) {
         setLoding(false);

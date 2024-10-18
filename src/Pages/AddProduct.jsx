@@ -96,7 +96,6 @@ const AddProductForm = () => {
   const handleSubmit = async (e) => {
     setLoding(true);
     e.preventDefault();
-    console.log(formData);
 
     const formPayload = new FormData();
     formPayload.append("productCode", formData.productCode);
@@ -118,7 +117,6 @@ const AddProductForm = () => {
     formPayload.append("rangeAvailable", formData.rangeAvailable);
     formPayload.append("weight", formData.weight);
     formPayload.append("testingApplications", formData.testingApplications);
-    console.log("00000", formPayload);
 
     try {
       const response = await fetch(
@@ -132,7 +130,6 @@ const AddProductForm = () => {
         }
       );
       const result = await response.json();
-      console.log("result", result);
 
       if (result.success) {
         setLoding(false);
