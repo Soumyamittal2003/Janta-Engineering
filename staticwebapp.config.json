@@ -1,8 +1,8 @@
 {
   "routes": [
     {
-      "route": "/*",
-      "serve": "/index.html",
+      "route": "/{*all}",  
+      "rewrite": "/index.html",
       "statusCode": 200
     }
   ]
