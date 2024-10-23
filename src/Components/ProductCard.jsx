@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
     <div className="bg-white shadow-lg rounded-md overflow-hidden flex flex-col transform transition-transform hover:scale-105 w-full max-w-xs">
-      <Link
+      {/* <Link
         to={{
           pathname: "/equipment-category",
+        }}
+        state={{ product }}
+      > */}
+      <Link
+        to={{
+          pathname: `/equipment-category/${product._id}`, // Use the product's unique id
         }}
         state={{ product }}
       >
@@ -25,7 +31,6 @@ const ProductCard = ({ product }) => {
           <div className="text-md text-gray-600 font-semibold truncate">
             {product.category}
           </div>
-          {/* <div className="text-gray-500">Code: {product.productCode}</div> */}
         </div>
       </Link>
     </div>
