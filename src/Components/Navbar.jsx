@@ -7,7 +7,7 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import logo from "../assets/logo.png";
 export function Navbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -49,7 +49,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link to="/">
               <img
-                src="https://jantaengineering.com/wp-content/uploads/2024/05/JE-logo-1.png"
+                src={logo}
                 alt="Logo"
                 className="w-36 h-auto object-contain"
               />
