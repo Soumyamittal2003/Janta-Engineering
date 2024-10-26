@@ -12,12 +12,12 @@ function WhoAreWe() {
       </div>
       <div className=" text-center min-h-screen px-20 py-10 font-medium text-lg">
         <p className="text-start mb-5">
-          JANTA ENGNEERING (JE) came into existence in a small way in 1970 and
-          gradually developed into a strong team of designers and engineers
-          working cohesively to manufacture precision testing equipment for
-          pulp, paper, paper board, conversion, and allied Industries. Its
-          engineering expertise grew so tremendously that it diversified its
-          product portfolio to include handmade paper machines as well as paint
+          JANTA ENGNEERING (JE) came into existence in a small way and gradually
+          developed into a strong team of designers and engineers working
+          cohesively to manufacture precision testing equipment for pulp, paper,
+          paper board, conversion, and allied Industries. Its engineering
+          expertise grew so tremendously that it diversified its product
+          portfolio to include handmade paper machines as well as paint
           production machines used in producing Prakritik paint. Today, JE
           occupies the status of a globally recognized company both in domestic
           and export markets.
