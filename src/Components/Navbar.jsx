@@ -12,7 +12,6 @@ export function Navbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const [showSubMenu, setShowSubMenu] = useState(false);
   const nestedMenuItems = [
     {
       title: "PHYSICAL PROPERTY TESTING EQUIPMENT",
@@ -42,6 +41,34 @@ export function Navbar() {
       navigate("/product", { state: { title, type } });
     }
   };
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  let openTimer;
+  let closeTimer;
+
+  // Show menu immediately on hover
+  const handleMouseEnter = () => {
+    clearTimeout(closeTimer); // Cancel any pending close timer
+    setIsMenuVisible(true); // Show menu immediately
+  };
+
+  // Delay hiding menu when mouse leaves
+  const handleMouseLeave = () => {
+    closeTimer = setTimeout(() => {
+      setIsMenuVisible(false); // Hide menu after 2 seconds
+    }, 2000);
+  };
+
+  // Keep menu open when hovering over the MenuList
+  const handleMenuListEnter = () => {
+    clearTimeout(closeTimer); // Cancel close timer if hovering over MenuList
+  };
+
+  // Delay closing menu when leaving MenuList
+  const handleMenuListLeave = () => {
+    closeTimer = setTimeout(() => {
+      setIsMenuVisible(false); // Hide menu after 2 seconds
+    }, 2000);
+  };
   return (
     <nav className="sticky z-10 top-0 bg-white shadow-md p-2">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,39 +93,11 @@ export function Navbar() {
                 </button>
               </Link>
               <MenuHandler>
-                <button
-                  onMouseEnter={() => setShowSubMenu(true)}
-                  onMouseLeave={() => setShowSubMenu(false)}
-                  className="text-gray-600 hover:text-blue-600 text-lg font-bold"
-                >
+                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
                   PRODUCTS
                 </button>
               </MenuHandler>
-              <MenuList
-                onMouseEnter={() => setShowSubMenu(true)}
-                onMouseLeave={() => setShowSubMenu(false)}
-                className={`bg-white shadow-lg rounded-md p-2 z-20 mt-5 transition-opacity duration-300 ${
-                  showSubMenu ? "opacity-100 delay-200" : "opacity-0"
-                }`}
-              >
-                <Menu>
-                  <MenuHandler>
-                    <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                      <span>LAB TESTING EQUIPMENT</span>
-                    </MenuItem>
-                  </MenuHandler>
-                  <MenuList className="ml-72 bg-white shadow-lg rounded-md p-3 z-30 transition-all duration-200 delay-150">
-                    {nestedMenuItems.map(({ title }, key) => (
-                      <MenuItem
-                        onClick={() => handleNavigation(title, "category")}
-                        key={key}
-                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
-                      >
-                        {title}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </Menu>
+              <MenuList className=" bg-white shadow-lg rounded-md p-2 z-20 mt-5 ">
                 <MenuItem
                   onClick={() =>
                     handleNavigation("HANDMADE PAPER MACHINES", "category")
@@ -115,8 +114,37 @@ export function Navbar() {
                 >
                   <Link>PRAKRITIK PAINT MACHINES</Link>
                 </MenuItem>
+                <Menu>
+                  <MenuHandler
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                      <span>LAB TESTING EQUIPMENT</span>
+                    </MenuItem>
+                  </MenuHandler>
+
+                  {isMenuVisible && (
+                    <MenuList
+                      onMouseEnter={handleMenuListEnter} // Keep menu open when hovering over it
+                      onMouseLeave={handleMenuListLeave} // Start delay on mouse leave
+                      className="bg-white shadow-lg rounded-md p-3 z-30"
+                    >
+                      {nestedMenuItems.map(({ title }, key) => (
+                        <MenuItem
+                          onClick={() => handleNavigation(title, "category")}
+                          key={key}
+                          className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
+                        >
+                          <Link>{title}</Link>
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  )}
+                </Menu>
               </MenuList>
             </Menu>
+
             <Menu>
               <MenuHandler>
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
@@ -275,24 +303,6 @@ export function Navbar() {
               </button>
             </MenuHandler>
             <MenuList className="bg-white shadow-lg rounded-md p-2 z-20 ">
-              <Menu>
-                <MenuHandler>
-                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                    <span>LAB TESTING EQUIPMENT</span>
-                  </MenuItem>
-                </MenuHandler>
-                <MenuList className="bg-white shadow-lg rounded-md p-3 z-30 ">
-                  {nestedMenuItems.map(({ title }, key) => (
-                    <MenuItem
-                      onClick={() => handleNavigation(title, "category")}
-                      key={key}
-                      className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
-                    >
-                      <Link>{title}</Link>
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
               <MenuItem
                 onClick={() =>
                   handleNavigation("HANDMADE PAPER MACHINES", "category")
@@ -309,6 +319,34 @@ export function Navbar() {
               >
                 <Link>PRAKRITIK PAINT MACHINES</Link>
               </MenuItem>
+              <Menu>
+                <MenuHandler
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                    <span>LAB TESTING EQUIPMENT</span>
+                  </MenuItem>
+                </MenuHandler>
+
+                {isMenuVisible && (
+                  <MenuList
+                    onMouseEnter={handleMouseEnter} // Keep menu open if hovering over the list
+                    onMouseLeave={handleMouseLeave}
+                    className="bg-white shadow-lg rounded-md p-3 z-30"
+                  >
+                    {nestedMenuItems.map(({ title }, key) => (
+                      <MenuItem
+                        onClick={() => handleNavigation(title, "category")}
+                        key={key}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
+                      >
+                        <Link>{title}</Link>
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                )}
+              </Menu>
             </MenuList>
           </Menu>
           <Menu>
