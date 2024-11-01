@@ -12,6 +12,7 @@ export function Navbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [showSubMenu, setShowSubMenu] = useState(false);
   const nestedMenuItems = [
     {
       title: "PHYSICAL PROPERTY TESTING EQUIPMENT",
@@ -65,25 +66,35 @@ export function Navbar() {
                 </button>
               </Link>
               <MenuHandler>
-                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
+                <button
+                  onMouseEnter={() => setShowSubMenu(true)}
+                  onMouseLeave={() => setShowSubMenu(false)}
+                  className="text-gray-600 hover:text-blue-600 text-lg font-bold"
+                >
                   PRODUCTS
                 </button>
               </MenuHandler>
-              <MenuList className=" bg-white shadow-lg rounded-md p-2 z-20 mt-5 ">
+              <MenuList
+                onMouseEnter={() => setShowSubMenu(true)}
+                onMouseLeave={() => setShowSubMenu(false)}
+                className={`bg-white shadow-lg rounded-md p-2 z-20 mt-5 transition-opacity duration-300 ${
+                  showSubMenu ? "opacity-100 delay-200" : "opacity-0"
+                }`}
+              >
                 <Menu>
                   <MenuHandler>
                     <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
                       <span>LAB TESTING EQUIPMENT</span>
                     </MenuItem>
                   </MenuHandler>
-                  <MenuList className="ml-72  bg-white shadow-lg rounded-md p-3 z-30">
+                  <MenuList className="ml-72 bg-white shadow-lg rounded-md p-3 z-30 transition-all duration-200 delay-150">
                     {nestedMenuItems.map(({ title }, key) => (
                       <MenuItem
                         onClick={() => handleNavigation(title, "category")}
                         key={key}
-                        className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3 "
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
                       >
-                        <Link>{title}</Link>
+                        {title}
                       </MenuItem>
                     ))}
                   </MenuList>
