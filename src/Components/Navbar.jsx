@@ -517,34 +517,31 @@ export function Navbar() {
 
 
 {/* Search Popup */}
-    {isSearchOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50" onClick={() => setIsSearchOpen(false)}>
-          <div
-            className="bg-white shadow-lg rounded-md p-4 w-80 sm:w-96 relative flex-col"
-            onClick={(e) => e.stopPropagation()} // Prevent click inside the popup from closing it
-          >
-            {/* <button
-              onClick={() => setIsSearchOpen(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-            >
-              ✕
-            </button> */}
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="border border-gray-300 rounded-md w-full p-2 mb-4"
-            />
-            <button
-              onClick={handleSearch}
-              className="w-10 bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-150"
-            >
-              GO!
-            </button>
-          </div>
-        </div>
-      )}
+  
+  {isSearchOpen && (
+  <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-end items-start z-50 mt-24 mr-5" onClick={() => setIsSearchOpen(false)}>
+    <div
+      className="bg-white shadow-lg rounded-md p-4 w-80 sm:w-96 relative flex-col"
+      onClick={(e) => e.stopPropagation()} // Prevent click inside the popup from closing it
+    >
+      <div className="flex items-center"> {/* Container to align input and button */}
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="border border-gray-300 rounded-l-md w-full p-1 focus:border-blue-500 focus:outline-none" // Rounded on the left only
+        />
+        <button
+          onClick={handleSearch}
+          className="w-14 bg-green-600 text-white py-1 rounded-r-md hover:bg-green-700 transition duration-150" // Rounded on the right only
+        >
+          GO!
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
 
     </nav>
