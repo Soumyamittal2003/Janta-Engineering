@@ -6,11 +6,14 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 export function Navbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search popup
+  const [searchQuery, setSearchQuery] = useState(""); // State to handle search input
+
 
   const nestedMenuItems = [
     {
@@ -69,6 +72,21 @@ export function Navbar() {
       setIsMenuVisible(false); // Hide menu after 2 seconds
     }, 2000);
   };
+
+  // Toggle the search popup
+  const toggleSearchPopup = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
+  // Handle the search functionality (for demonstration)
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      
+      navigate('/product', { state: { searchQuery } });
+      setIsSearchOpen(false); // Close popup after search
+    }
+  };
+
   return (
     <nav className="sticky z-10 top-0 bg-white shadow-md p-2">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +103,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex lg:items-center lg:gap-8">
+          <div className="hidden lg:flex lg:items-center lg:gap-6 mr-16">
             <Menu>
               <Link to="/WhoAreWe">
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
@@ -270,6 +288,15 @@ export function Navbar() {
             >
               Contact Us
             </Link>
+
+            {/* Desktop Search Icon */}
+          <button
+             onClick={toggleSearchPopup}
+              className="text-gray-600 hover:text-blue-600 transition duration-150 mt-1 w-1 text-center"
+            >
+              <MagnifyingGlassIcon className="w-6 h-6 mx-auto" />
+            </button>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -477,10 +504,53 @@ export function Navbar() {
           >
             Contact Us
           </Link>
+
+         {/* Mobile Search Icon */}
+         <button
+             onClick={toggleSearchPopup}
+              className="text-gray-600 hover:text-blue-600 transition duration-150 mt-1 w-1 text-center"
+            >
+              <MagnifyingGlassIcon className="w-6 h-6 mx-auto" />
+            </button>
         </div>
       )}
+
+
+{/* Search Popup */}
+    {isSearchOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50" onClick={() => setIsSearchOpen(false)}>
+          <div
+            className="bg-white shadow-lg rounded-md p-4 w-80 sm:w-96 relative flex-col"
+            onClick={(e) => e.stopPropagation()} // Prevent click inside the popup from closing it
+          >
+            {/* <button
+              onClick={() => setIsSearchOpen(false)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+              ✕
+            </button> */}
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="border border-gray-300 rounded-md w-full p-2 mb-4"
+            />
+            <button
+              onClick={handleSearch}
+              className="w-10 bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-150"
+            >
+              GO!
+            </button>
+          </div>
+        </div>
+      )}
+
+
     </nav>
   );
 }
 
 export default Navbar;
+
+

@@ -7,13 +7,16 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import WhatsAppIcon from "../Components/WhatsAppIcon";
 import Sidebar from "../Components/Sidebar";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const ProductPage = () => {
   const location = useLocation();
-  const { title, type } = location.state || "";
+  const { title, type,searchQuery } = location.state || "";
 
   const [equipmentData, setEquipmentData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(`${searchQuery}`); // State for search term
+  const [filteredData, setFilteredData] = useState([]); // State for filtered data
 
   const categories = [
     "PHYSICAL PROPERTY TESTING EQUIPMENT",
@@ -45,40 +48,47 @@ const ProductPage = () => {
       const result = await response.json();
 
       if (result.success) {
-        if (!title) {
-          setEquipmentData(result.equipment);
-        } else if (type === "category") {
-          const filteredCategory = result.equipment.filter((ele) => {
-            return ele.category.toLowerCase() === title.toLowerCase();
-          });
-          setEquipmentData(filteredCategory);
-        } else if (type === "application") {
-          const filteredApplication = result.equipment.filter((ele) => {
-            // Check if title is included in the applicationType array (case-insensitive)
-            return ele.applicationType.some(
-              (appType) => appType.toLowerCase() === title.toLowerCase()
-            );
-          });
-          setEquipmentData(filteredApplication);
-        } else {
-          const filteredCategory = result.equipment.filter((ele) => {
-            return ele.category.toLowerCase() === title.toLowerCase();
-          });
-          setEquipmentData(filteredCategory);
+        let data = result.equipment;
+        if (title) {
+          data =
+            type === "category"
+              ? data.filter(
+                  (ele) => ele.category.toLowerCase() === title.toLowerCase()
+                )
+              : data.filter((ele) =>
+                  ele.applicationType.some(
+                    (appType) => appType.toLowerCase() === title.toLowerCase()
+                  )
+                );
         }
+        setEquipmentData(data);
+        setFilteredData(data); // Initialize filtered data
       } else {
         console.error("Failed to fetch equipment data:", result.message);
       }
     } catch (error) {
       console.error("Error fetching equipment data:", error);
     } finally {
-      setIsLoading(false); // Ensure this is called regardless of success or failure
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getEquipment();
   }, [title]);
+
+  // Update filtered data based on search term
+  useEffect(() => {
+    setFilteredData(
+      equipmentData.filter(
+        (product) =>
+          product.productName
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          product.productCode.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, equipmentData]);
 
   const handleCategorySelect = (title, type) => {
     navigate("/product", { state: { title, type } });
@@ -99,6 +109,23 @@ const ProductPage = () => {
         <div className="font-bold text-gray-600 w-full p-10 mb-10 border rounded-md bg-gray-100">
           {title ? title : "All Products"}
         </div>
+
+        {/* Search input */}
+        <div className="mb-4 flex justify-start ml-0">
+          <div className="relative w-full md:w-1/4 ml-14">
+            <span className="absolute inset-y-0 left-2 flex items-center text-gray-500">
+              <i className="fas fa-search "></i>
+            </span>
+            <input
+              type="text"
+              placeholder="Search by product name or code"
+              className="p-2 pl-10 border-2 border-gray-300 rounded-lg w-full focus:border-blue-500 focus:outline-none" // changed `rounded-md` to `rounded-lg`
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row">
           <div className="flex justify-center align-center text-center w-full md:w-1/4 p-2">
             <Sidebar
@@ -114,10 +141,10 @@ const ProductPage = () => {
             <div className="min-h-screen flex flex-wrap gap-4 justify-center">
               {isLoading ? (
                 <Spinner />
-              ) : equipmentData.length === 0 ? (
+              ) : filteredData.length === 0 ? (
                 <div className="text-center min-h-screen">No product found</div>
               ) : (
-                equipmentData.map((product, index) => (
+                filteredData.map((product, index) => (
                   <div key={index} className="w-full md:w-5/12 lg:w-1/4 p-2">
                     <ProductCard product={product} />
                   </div>
