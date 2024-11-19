@@ -1,0 +1,33 @@
+name: Deploy Static Web App using SWA CLI
+
+on:
+  push:
+    branches:
+      - main # Replace "main" with your deployment branch if necessary
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install Node.js
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Ensure this matches the Node.js version your app needs
+
+      # Step 3: Install project dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the app
+      - name: Build the app
+        run: npm run build
+
+      # Step 5: Deploy to Azure using SWA CLI
+      - name: Deploy to Azure Static Web App
+        run: npx swa deploy ./build --deployment-token ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
