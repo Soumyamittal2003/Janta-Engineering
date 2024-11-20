@@ -103,7 +103,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex lg:items-center lg:gap-6 mr-16">
+          <div className="hidden lg:flex lg:items-center justify-center w-full lg:gap-6 mr-16">
             <Menu>
               <Link to="/WhoAreWe">
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
@@ -163,6 +163,8 @@ export function Navbar() {
               </MenuList>
             </Menu>
 
+
+{/*
             <Menu>
               <MenuHandler>
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
@@ -288,7 +290,7 @@ export function Navbar() {
             >
               Contact Us
             </Link>
-
+*/}
             {/* Desktop Search Icon */}
           <button
              onClick={toggleSearchPopup}
