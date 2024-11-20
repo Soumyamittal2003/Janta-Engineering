@@ -1,12 +1,14 @@
 name: jantaengineering CI CD
 
-on: [push]
-  
+on:
+  push:
+    branches:
+      - main # Adjust the branch name if needed
 
-env :
-AZURE_WEBAPP_NAME: jantaEngineeringWebsite
-AZURE_WEBAPP_PACKAGE_PATH : '.'
-NODE_VERSION :'18.x'
+env:
+  AZURE_WEBAPP_NAME: jantaEngineeringWebsite
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  NODE_VERSION: '18.x'
 
 jobs:
   build-and-deploy:
@@ -14,35 +16,35 @@ jobs:
 
     steps:
       # Step 1: Checkout the code
-      - name: 'Checkout Github Action'
-        uses: actions/checkout@main
+      - name: Checkout Github Action
+        uses: actions/checkout@v3
 
-      - uses: azure/login@v1
-        with
-          cred: ${{ secrets.AZURE_CREDENTIALS }}
-        
+      # Step 2: Login to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Step 2: Install Node.js
-      - name: Setup Node ${{ env.NODE_VERSION }}
+      # Step 3: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }} 
-          
-      # Step 3: Install project dependencies
-      - name: 'npm install, build, test'
+          node-version: ${{ env.NODE_VERSION }}
+
+      # Step 4: Install project dependencies
+      - name: Install, Build, and Test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory:
 
-      # Step 4: Deploy to Azure using azure credentials
-      - uses: azure/webapps-deploy@v3
+      # Step 5: Deploy to Azure Web App
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: ./build
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
-        #azure logout
-        - name: logout
-          run: |
-            az logout
+      # Step 6: Azure Logout
+      - name: Azure Logout
+        run: az logout
