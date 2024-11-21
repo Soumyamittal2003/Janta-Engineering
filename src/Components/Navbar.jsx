@@ -8,12 +8,12 @@ import {
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
+
 export function Navbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // State for search popup
-  const [searchQuery, setSearchQuery] = useState(""); // State to handle search input
-
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const nestedMenuItems = [
     {
@@ -33,6 +33,186 @@ export function Navbar() {
     },
   ];
 
+  const shotcretemachine = [
+    {
+      title: "Wet shotcrete machine",
+    },
+    {
+      title: "Dry shotcrete machine",
+    }
+  ];
+
+  const shotcretemachineSpares = [
+    {
+      title: "Friction Disk",
+    },
+    {
+      title: "Top & Bottom Seal",
+    },
+    {
+      title: "Nozzles",
+    }
+  ];
+
+  const RoboArmShotcretemachineSpares = [
+    {
+      title: "CIFA",
+    },
+    {
+      title: "NORMAT",
+    },
+    {
+      title: "SWINGSTATOR",
+    }
+  ];
+
+  const BoomerSpares = [
+    {
+      title: "SANDVIK",
+    },
+    {
+      title: "L2D",
+    },
+    
+  ];
+
+  const GroutingPump = [
+    {
+      title: "COLAIDAL MIXING PUMP",
+    },
+    {
+      title: "COLAIDAL MIXING AGGITATIOR",
+    },
+    {
+      title: "MAI PUMP {AUTO MIXING}",
+    }
+    ,
+    {
+      title: "DOUBLE DRUM AGGRTATIOR GROUTING PUMP",
+    },
+    {
+      title: "SINGLE DRUM AGGRTATIOR GROUTING PUMP",
+    }
+  ];
+  const SlurryPump = [
+    {
+      title: "AAA",
+    },
+    
+  ];
+  const GroutingAsseceries = [
+    {
+      title: "MACHENICAL PACKER",
+    },
+    {
+      title: "AAAA",
+    },
+    
+  ];
+  const GantryGantrySpares = [
+    {
+      title: "TURN BUCKLE",
+    },
+    {
+      title: "PINS",
+    },
+    {
+      title: "ELECTRIC VIBRATOR",
+    },
+    {
+      title: "NUMERIC VIBRATOR",
+    },
+    {
+      title: "AIR FLOW LINE",
+    },
+    {
+      title: "TRAVELER GANTRY WHEEL",
+    },
+    {
+      title: "JAMBO WHEEL",
+    },
+    {
+      title: "HYD JACK",
+    },
+    {
+      title: "HYD POWER PACK",
+    },
+    
+
+  ];
+  const HydraulicRipBindingJack = [
+    {
+      title: "AAA",
+    },
+    {
+      title: "AAA",
+    },
+    
+  ];
+  const CrusherPlant = [
+    {
+      title: "CONVEYOR ROLLER",
+    },
+    {
+      title: "CONVEYOR BELT",
+    },
+    {
+      title: "TILL PULLY",
+    },
+    {
+      title: "HEAD PULLY",
+    },
+    {
+      title: "CONVEYOR ROLLER STAND",
+    }
+  ];
+  const BachingPlant = [
+    {
+      title: "CEMENT FEEDING CONVEYING SCREW",
+    },
+    {
+      title: "HANGER BEARING & SHAFT",
+    },
+    {
+      title: "GEAR BOX & MOTOR ETC",
+    }
+  ];
+  const PneumaticConcretePlacer = [
+    {
+      title: "AAA",
+    },
+    
+  ];
+  const RoboArmConcretePump = [
+    {
+      title: "PIPELINE",
+    },
+    {
+      title: "BEND",
+    },
+    {
+      title: "CLAMP",
+    }
+  ];
+  const LoaderExclivator = [
+    {
+      title: "Bucket",
+    },
+    {
+      title: "Chain",
+    },
+    {
+      title: "Track Roller",
+    },
+    {
+      title: "Bucket",
+    }
+  ];
+
+  
+
+
+
   const handleNavigation = (title, type) => {
     const currentPath = location.pathname;
     const currentState = location.state;
@@ -44,46 +224,15 @@ export function Navbar() {
       navigate("/product", { state: { title, type } });
     }
   };
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  let openTimer;
-  let closeTimer;
 
-  // Show menu immediately on hover
-  const handleMouseEnter = () => {
-    clearTimeout(closeTimer); // Cancel any pending close timer
-    setIsMenuVisible(true); // Show menu immediately
-  };
-
-  // Delay hiding menu when mouse leaves
-  const handleMouseLeave = () => {
-    closeTimer = setTimeout(() => {
-      setIsMenuVisible(false); // Hide menu after 2 seconds
-    }, 2000);
-  };
-
-  // Keep menu open when hovering over the MenuList
-  const handleMenuListEnter = () => {
-    clearTimeout(closeTimer); // Cancel close timer if hovering over MenuList
-  };
-
-  // Delay closing menu when leaving MenuList
-  const handleMenuListLeave = () => {
-    closeTimer = setTimeout(() => {
-      setIsMenuVisible(false); // Hide menu after 2 seconds
-    }, 2000);
-  };
-
-  // Toggle the search popup
   const toggleSearchPopup = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
-  // Handle the search functionality (for demonstration)
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      
-      navigate('/product', { state: { searchQuery } });
-      setIsSearchOpen(false); // Close popup after search
+      navigate("/product", { state: { searchQuery } });
+      setIsSearchOpen(false);
     }
   };
 
@@ -94,11 +243,7 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/">
-              <img
-                src={logo}
-                alt="Logo"
-                className="w-36 h-auto object-contain"
-              />
+              <img src={logo} alt="Logo" className="w-36 h-auto object-contain" />
             </Link>
           </div>
 
@@ -113,195 +258,275 @@ export function Navbar() {
               <MenuHandler>
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
                   PRODUCTS
-                  <span className="ml-2 text-sm">
-        ▼ {/* Static arrow icon */}
-      </span>
+                  <span className="ml-2 text-sm">▼</span>
                 </button>
               </MenuHandler>
-              <MenuList className=" bg-white shadow-lg rounded-md p-2 z-20 mt-5 ">
+              <MenuList className="bg-white shadow-lg rounded-md p-2 z-20 mt-5 overflow-y-auto max-h-96 relative">
                 <MenuItem
-                  onClick={() =>
-                    handleNavigation("HANDMADE PAPER MACHINES", "category")
-                  }
-                  className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3"
+                  onClick={() => handleNavigation("HANDMADE PAPER MACHINES", "category")}
+                  className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
                 >
                   <Link>HANDMADE PAPER MACHINES</Link>
                 </MenuItem>
                 <MenuItem
-                  onClick={() =>
-                    handleNavigation("PRAKRITIK PAINT MACHINES", "category")
-                  }
-                  className="text-gray-600 hover:text-blue-600 text-mg border-b-2 border-gray-300 font-bold p-3"
+                  onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES", "category")}
+                  className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
                 >
                   <Link>PRAKRITIK PAINT MACHINES</Link>
                 </MenuItem>
-                <Menu>
-                  <MenuHandler
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                      <span>LAB TESTING EQUIPMENT</span>
-                    </MenuItem>
-                  </MenuHandler>
-
-                  {isMenuVisible && (
-                    <MenuList
-                      onMouseEnter={handleMenuListEnter} // Keep menu open when hovering over it
-                      onMouseLeave={handleMenuListLeave} // Start delay on mouse leave
-                      className="bg-white shadow-lg rounded-md p-3 z-30"
-                    >
-                      {nestedMenuItems.map(({ title }, key) => (
-                        <MenuItem
-                          onClick={() => handleNavigation(title, "category")}
-                          key={key}
-                          className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
-                        >
-                          <Link>{title}</Link>
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  )}
-                </Menu>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                    LAB TESTING EQUIPMENT
+                  </MenuItem>
+                  <div
+      className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-50 hidden group-hover:block"
+      style={{ whiteSpace: "nowrap" }} // Prevents text wrapping
+    >
+                    {nestedMenuItems.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  SHORTCRETE MACHINE
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {shotcretemachine.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  SHORTCRETE MACHINE SPARES
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {shotcretemachineSpares.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  ROBO ARM SHORTCRETE MACHINE SPARES
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {RoboArmShotcretemachineSpares.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  BOOMER SPARES
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {BoomerSpares.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  GROUTING PUMP
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {GroutingPump.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                      
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  SLURRY PUMP
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {SlurryPump.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  GROUTING ASSECERIES
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {GroutingAsseceries.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  GANTRY & GANTRY SPARES
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {GantryGantrySpares.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  HYDRAULIC RIP BINDING JACK
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {HydraulicRipBindingJack.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  CRUSHER PLANT
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {CrusherPlant.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  BACHING PLANT
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {BachingPlant.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  PNEUMATIC CONCREATE PLACER
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {PneumaticConcretePlacer.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  ROBO ARM CONCRETE PUMP
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {RoboArmConcretePump.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="relative group">
+                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  LOADER EXCLIVATOR
+                  </MenuItem>
+                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    {LoaderExclivator.map(({ title }, key) => (
+                      <div
+                        key={key}
+                        onClick={() => handleNavigation(title, "category")}
+                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                      >
+                        {title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </MenuList>
             </Menu>
-
-
-{/*
-            <Menu>
-              <MenuHandler>
-                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
-                  APPLICATIONS
-                </button>
-              </MenuHandler>
-              <MenuList className="bg-white shadow-lg rounded-md z-30 mt-5">
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{ title: "NEWSPRINT", type: "application" }}
-                  >
-                    {" "}
-                    NEWSPRINT
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "WRITING PRINTING/COPIER",
-                      type: "application",
-                    }}
-                  >
-                    WRITING PRINTING/COPIER
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "DUPLEX AND ART PAPER",
-                      type: "application",
-                    }}
-                  >
-                    DUPLEX AND ART PAPER
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "KRAFT LINER/FLUTING PAPER/SACK",
-                      type: "application",
-                    }}
-                  >
-                    KRAFT LINER/FLUTING PAPER/SACK
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "CORRUGATED FIBRE BOARD BOX BOARD",
-                      type: "application",
-                    }}
-                  >
-                    CORRUGATED FIBRE BOARD BOX BOARD
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "TISSUE & SOFT MATERIAL",
-                      type: "application",
-                    }}
-                  >
-                    TISSUE & SOFT MATERIAL
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE",
-                      type: "application",
-                    }}
-                  >
-                    PULP TESTING RAW MATERIAL RECYCLED FIBRE
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "PULP TESTING RAW MATERIAL WOOD FIBRE",
-                      type: "application",
-                    }}
-                  >
-                    PULP TESTING RAW MATERIAL WOOD FIBRE
-                  </Link>
-                </MenuItem>
-                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  {" "}
-                  <Link
-                    to={{ pathname: "/product" }}
-                    state={{
-                      title: "PULP TESTING RAW MATERIAL AGRO FIBRE",
-                      type: "application",
-                    }}
-                  >
-                    PULP TESTING RAW MATERIAL AGRO FIBRE
-                  </Link>
-                </MenuItem>
-              </MenuList>
-              <Link to="/ServiceAndCalibration">
-                <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
-                  SERVICE AND CALIBRATION
-                </button>
-              </Link>
-            </Menu>
-            <Link
-              to="/contact-us"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150"
-            >
-              Contact Us
-            </Link>
-*/}
-            {/* Desktop Search Icon */}
-          <button
-             onClick={toggleSearchPopup}
+            <button
+              onClick={toggleSearchPopup}
               className="text-gray-600 hover:text-blue-600 transition duration-150 mt-1 w-1 text-center"
             >
               <MagnifyingGlassIcon className="w-6 h-6 mx-auto" />
             </button>
-
           </div>
 
           {/* Mobile Menu Button */}
@@ -310,11 +535,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-900 hover:text-blue-600"
             >
-              {isMobileMenuOpen ? (
-                <XMarkIcon className="w-6 h-6" />
-              ) : (
-                <Bars3Icon className="w-6 h-6" />
-              )}
+              {isMobileMenuOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -325,217 +546,71 @@ export function Navbar() {
         <div className="lg:hidden bg-white shadow-md p-4">
           <Menu>
             <Link to="/WhoAreWe">
-              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
+              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg">
                 ABOUT US
               </button>
             </Link>
             <MenuHandler>
-              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
+              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg">
                 PRODUCTS
               </button>
             </MenuHandler>
-            <MenuList className="bg-white shadow-lg rounded-md p-2 z-20 ">
+            <MenuList className="bg-white shadow-lg rounded-md p-2 z-20">
               <MenuItem
-                onClick={() =>
-                  handleNavigation("HANDMADE PAPER MACHINES", "category")
-                }
+                onClick={() => handleNavigation("HANDMADE PAPER MACHINES", "category")}
                 className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
               >
                 <Link>HANDMADE PAPER MACHINES</Link>
               </MenuItem>
               <MenuItem
-                onClick={() =>
-                  handleNavigation("PRAKRITIK PAINT MACHINES", "category")
-                }
+                onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES", "category")}
                 className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
               >
                 <Link>PRAKRITIK PAINT MACHINES</Link>
               </MenuItem>
-              <Menu>
-                <MenuHandler
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                    <span>LAB TESTING EQUIPMENT</span>
-                  </MenuItem>
-                </MenuHandler>
-
-                {isMenuVisible && (
-                  <MenuList
-                    onMouseEnter={handleMouseEnter} // Keep menu open if hovering over the list
-                    onMouseLeave={handleMouseLeave}
-                    className="bg-white shadow-lg rounded-md p-3 z-30"
-                  >
-                    {nestedMenuItems.map(({ title }, key) => (
-                      <MenuItem
-                        onClick={() => handleNavigation(title, "category")}
-                        key={key}
-                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
-                      >
-                        <Link>{title}</Link>
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                )}
-              </Menu>
+              <div className="relative group">
+                <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
+                  LAB TESTING EQUIPMENT
+                </MenuItem>
+                <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                  {nestedMenuItems.map(({ title }, key) => (
+                    <div
+                      key={key}
+                      onClick={() => handleNavigation(title, "category")}
+                      className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                    >
+                      {title}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </MenuList>
           </Menu>
-          {/*
-          <Menu>
-            <MenuHandler>
-              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
-                APPLICATIONS
-              </button>
-            </MenuHandler>
-            <MenuList className="bg-white shadow-lg rounded-md z-30">
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{ title: "NEWSPRINT", type: "application" }}
-                >
-                  {" "}
-                  NEWSPRINT
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "WRITING PRINTING/COPIER",
-                    type: "application",
-                  }}
-                >
-                  WRITING PRINTING/COPIER
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{ title: "DUPLEX AND ART PAPER", type: "application" }}
-                >
-                  DUPLEX AND ART PAPER
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "KRAFT LINER/FLUTING PAPER/SACK",
-                    type: "application",
-                  }}
-                >
-                  KRAFT LINER/FLUTING PAPER/SACK
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "CORRUGATED FIBRE BOARD BOX BOARD",
-                    type: "application",
-                  }}
-                >
-                  CORRUGATED FIBRE BOARD BOX BOARD
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "TISSUE & SOFT MATERIAL",
-                    type: "application",
-                  }}
-                >
-                  TISSUE & SOFT MATERIAL
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "PULP TESTING RAW MATERIAL RECYCLED FIBRE",
-                    type: "application",
-                  }}
-                >
-                  PULP TESTING RAW MATERIAL RECYCLED FIBRE
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "PULP TESTING RAW MATERIAL WOOD FIBRE",
-                    type: "application",
-                  }}
-                >
-                  PULP TESTING RAW MATERIAL WOOD FIBRE
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link
-                  to={{ pathname: "/product" }}
-                  state={{
-                    title: "PULP TESTING RAW MATERIAL AGRO FIBRE",
-                    type: "application",
-                  }}
-                >
-                  PULP TESTING RAW MATERIAL AGRO FIBRE
-                </Link>
-              </MenuItem>
-              <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                {" "}
-                <Link to={{ pathname: "/product" }} state={{ title: "Items" }}>
-                  Items
-                </Link>
-              </MenuItem>
-            </MenuList>
-            <Link to="/ServiceAndCalibration">
-              <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
-                SERVICE AND CALIBRATION
-              </button>
-            </Link>
-          </Menu>
-          */}
           <Link
             to="/contact-us"
             className="block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md text-center hover:bg-blue-700 transition duration-150"
           >
             Contact Us
           </Link>
-
-         {/* Mobile Search Icon */}
-         <button
-             onClick={toggleSearchPopup}
-              className="text-gray-600 hover:text-blue-600 transition duration-150 mt-1 w-1 text-center"
-            >
-              <MagnifyingGlassIcon className="w-6 h-6 mx-auto" />
-            </button>
+          <button
+            onClick={toggleSearchPopup}
+            className="text-gray-600 hover:text-blue-600 transition duration-150 mt-1 w-1 text-center"
+          >
+            <MagnifyingGlassIcon className="w-6 h-6 mx-auto" />
+          </button>
         </div>
       )}
 
-
-{/* Search Popup */}
-    {isSearchOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50" onClick={() => setIsSearchOpen(false)}>
+      {/* Search Popup */}
+      {isSearchOpen && (
+        <div
+          className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50"
+          onClick={() => setIsSearchOpen(false)}
+        >
           <div
             className="bg-white shadow-lg rounded-md p-4 w-80 sm:w-96 relative flex-col"
-            onClick={(e) => e.stopPropagation()} // Prevent click inside the popup from closing it
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* <button
-              onClick={() => setIsSearchOpen(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-            >
-              ✕
-            </button> */}
             <input
               type="text"
               placeholder="Search..."
@@ -545,19 +620,15 @@ export function Navbar() {
             />
             <button
               onClick={handleSearch}
-              className="w-10 bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-150"
+              className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-150"
             >
               GO!
             </button>
           </div>
         </div>
       )}
-
-
     </nav>
   );
 }
 
 export default Navbar;
-
-
