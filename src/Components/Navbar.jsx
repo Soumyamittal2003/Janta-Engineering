@@ -113,6 +113,9 @@ export function Navbar() {
               <MenuHandler>
                 <button className="text-gray-600 hover:text-blue-600 text-lg font-bold">
                   PRODUCTS
+                  <span className="ml-2 text-sm">
+        ▼ {/* Static arrow icon */}
+      </span>
                 </button>
               </MenuHandler>
               <MenuList className=" bg-white shadow-lg rounded-md p-2 z-20 mt-5 ">
@@ -378,6 +381,7 @@ export function Navbar() {
               </Menu>
             </MenuList>
           </Menu>
+          {/*
           <Menu>
             <MenuHandler>
               <button className="font-medium text-gray-900 hover:text-blue-600 w-full text-left pl-5 p-3 text-lg font-md">
@@ -500,6 +504,7 @@ export function Navbar() {
               </button>
             </Link>
           </Menu>
+          */}
           <Link
             to="/contact-us"
             className="block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md text-center hover:bg-blue-700 transition duration-150"
