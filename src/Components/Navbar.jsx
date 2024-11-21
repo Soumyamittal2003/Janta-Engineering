@@ -6,7 +6,11 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 
 export function Navbar() {
@@ -39,7 +43,7 @@ export function Navbar() {
     },
     {
       title: "Dry shotcrete machine",
-    }
+    },
   ];
 
   const shotcretemachineSpares = [
@@ -51,7 +55,7 @@ export function Navbar() {
     },
     {
       title: "Nozzles",
-    }
+    },
   ];
 
   const RoboArmShotcretemachineSpares = [
@@ -63,7 +67,7 @@ export function Navbar() {
     },
     {
       title: "SWINGSTATOR",
-    }
+    },
   ];
 
   const BoomerSpares = [
@@ -73,7 +77,6 @@ export function Navbar() {
     {
       title: "L2D",
     },
-    
   ];
 
   const GroutingPump = [
@@ -85,20 +88,18 @@ export function Navbar() {
     },
     {
       title: "MAI PUMP {AUTO MIXING}",
-    }
-    ,
+    },
     {
       title: "DOUBLE DRUM AGGRTATIOR GROUTING PUMP",
     },
     {
       title: "SINGLE DRUM AGGRTATIOR GROUTING PUMP",
-    }
+    },
   ];
   const SlurryPump = [
     {
       title: "AAA",
     },
-    
   ];
   const GroutingAsseceries = [
     {
@@ -107,7 +108,6 @@ export function Navbar() {
     {
       title: "AAAA",
     },
-    
   ];
   const GantryGantrySpares = [
     {
@@ -137,8 +137,6 @@ export function Navbar() {
     {
       title: "HYD POWER PACK",
     },
-    
-
   ];
   const HydraulicRipBindingJack = [
     {
@@ -147,7 +145,6 @@ export function Navbar() {
     {
       title: "AAA",
     },
-    
   ];
   const CrusherPlant = [
     {
@@ -164,7 +161,7 @@ export function Navbar() {
     },
     {
       title: "CONVEYOR ROLLER STAND",
-    }
+    },
   ];
   const BachingPlant = [
     {
@@ -175,13 +172,12 @@ export function Navbar() {
     },
     {
       title: "GEAR BOX & MOTOR ETC",
-    }
+    },
   ];
   const PneumaticConcretePlacer = [
     {
       title: "AAA",
     },
-    
   ];
   const RoboArmConcretePump = [
     {
@@ -192,7 +188,7 @@ export function Navbar() {
     },
     {
       title: "CLAMP",
-    }
+    },
   ];
   const LoaderExclivator = [
     {
@@ -206,12 +202,8 @@ export function Navbar() {
     },
     {
       title: "Bucket",
-    }
+    },
   ];
-
-  
-
-
 
   const handleNavigation = (title, type) => {
     const currentPath = location.pathname;
@@ -243,7 +235,11 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/">
-              <img src={logo} alt="Logo" className="w-36 h-auto object-contain" />
+              <img
+                src={logo}
+                alt="Logo"
+                className="w-36 h-auto object-contain"
+              />
             </Link>
           </div>
 
@@ -261,57 +257,59 @@ export function Navbar() {
                   <span className="ml-2 text-sm">▼</span>
                 </button>
               </MenuHandler>
-              <MenuList className="bg-white shadow-lg rounded-md p-2 z-20 mt-5 overflow-y-auto max-h-96 relative">
+              <MenuList
+                className="bg-white shadow-lg rounded-md p-2 z-20 mt-5 relative"
+                style={{
+                  maxHeight: "250px", // Limit the height to fit 5 rows
+                  overflowY: "auto", // Enable vertical scrolling
+                   // Ensure the dropdown renders properly
+                }}
+              >
+                {/* Main Menu Items */}
                 <MenuItem
-                  onClick={() => handleNavigation("HANDMADE PAPER MACHINES", "category")}
+                  onClick={() =>
+                    handleNavigation("HANDMADE PAPER MACHINES", "category")
+                  }
                   className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
                 >
                   <Link>HANDMADE PAPER MACHINES</Link>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES", "category")}
+                  onClick={() =>
+                    handleNavigation("PRAKRITIK PAINT MACHINES", "category")
+                  }
                   className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
                 >
                   <Link>PRAKRITIK PAINT MACHINES</Link>
                 </MenuItem>
+
+                {/* Example Submenu */}
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                    LAB TESTING EQUIPMENT
+                    SHORTCRETE MACHINE
                   </MenuItem>
                   <div
-      className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-50 hidden group-hover:block"
-      style={{ whiteSpace: "nowrap" }} // Prevents text wrapping
-    >
-                    {nestedMenuItems.map(({ title }, key) => (
-                      <div
-                        key={key}
-                        onClick={() => handleNavigation(title, "category")}
-                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
-                      >
-                        {title}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="relative group">
-                  <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  SHORTCRETE MACHINE
-                  </MenuItem>
-                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
+                    className="absolute left-full top-0 bg-white shadow-lg rounded-md p-2 z-50 hidden group-hover:block"
+                    style={{
+                      minWidth: "200px",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
                     {shotcretemachine.map(({ title }, key) => (
                       <div
                         key={key}
                         onClick={() => handleNavigation(title, "category")}
-                        className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300 whitespace-nowrap cursor-pointer"
+                        className="text-gray-600 hover:text-blue-600 text-sm p-2 border-b border-gray-300 cursor-pointer"
                       >
                         {title}
                       </div>
                     ))}
                   </div>
                 </div>
+
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  SHORTCRETE MACHINE SPARES
+                    SHORTCRETE MACHINE SPARES
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {shotcretemachineSpares.map(({ title }, key) => (
@@ -327,7 +325,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  ROBO ARM SHORTCRETE MACHINE SPARES
+                    ROBO ARM SHORTCRETE MACHINE SPARES
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {RoboArmShotcretemachineSpares.map(({ title }, key) => (
@@ -343,7 +341,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  BOOMER SPARES
+                    BOOMER SPARES
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {BoomerSpares.map(({ title }, key) => (
@@ -359,7 +357,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  GROUTING PUMP
+                    GROUTING PUMP
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {GroutingPump.map(({ title }, key) => (
@@ -370,13 +368,12 @@ export function Navbar() {
                       >
                         {title}
                       </div>
-                      
                     ))}
                   </div>
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  SLURRY PUMP
+                    SLURRY PUMP
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {SlurryPump.map(({ title }, key) => (
@@ -392,7 +389,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  GROUTING ASSECERIES
+                    GROUTING ASSECERIES
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {GroutingAsseceries.map(({ title }, key) => (
@@ -406,10 +403,10 @@ export function Navbar() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  GANTRY & GANTRY SPARES
+                    GANTRY & GANTRY SPARES
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {GantryGantrySpares.map(({ title }, key) => (
@@ -425,7 +422,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  HYDRAULIC RIP BINDING JACK
+                    HYDRAULIC RIP BINDING JACK
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {HydraulicRipBindingJack.map(({ title }, key) => (
@@ -441,7 +438,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  CRUSHER PLANT
+                    CRUSHER PLANT
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {CrusherPlant.map(({ title }, key) => (
@@ -457,7 +454,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  BACHING PLANT
+                    BACHING PLANT
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {BachingPlant.map(({ title }, key) => (
@@ -473,7 +470,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  PNEUMATIC CONCREATE PLACER
+                    PNEUMATIC CONCREATE PLACER
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {PneumaticConcretePlacer.map(({ title }, key) => (
@@ -489,7 +486,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  ROBO ARM CONCRETE PUMP
+                    ROBO ARM CONCRETE PUMP
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {RoboArmConcretePump.map(({ title }, key) => (
@@ -505,7 +502,7 @@ export function Navbar() {
                 </div>
                 <div className="relative group">
                   <MenuItem className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300">
-                  LOADER EXCLIVATOR
+                    LOADER EXCLIVATOR
                   </MenuItem>
                   <div className="absolute left-full top-0 bg-white shadow-lg rounded-md p-3 z-30 hidden group-hover:block">
                     {LoaderExclivator.map(({ title }, key) => (
@@ -535,7 +532,11 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-900 hover:text-blue-600"
             >
-              {isMobileMenuOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
+              {isMobileMenuOpen ? (
+                <XMarkIcon className="w-6 h-6" />
+              ) : (
+                <Bars3Icon className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -557,13 +558,17 @@ export function Navbar() {
             </MenuHandler>
             <MenuList className="bg-white shadow-lg rounded-md p-2 z-20">
               <MenuItem
-                onClick={() => handleNavigation("HANDMADE PAPER MACHINES", "category")}
+                onClick={() =>
+                  handleNavigation("HANDMADE PAPER MACHINES", "category")
+                }
                 className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
               >
                 <Link>HANDMADE PAPER MACHINES</Link>
               </MenuItem>
               <MenuItem
-                onClick={() => handleNavigation("PRAKRITIK PAINT MACHINES", "category")}
+                onClick={() =>
+                  handleNavigation("PRAKRITIK PAINT MACHINES", "category")
+                }
                 className="text-gray-600 hover:text-blue-600 text-mg font-bold p-3 border-b-2 border-gray-300"
               >
                 <Link>PRAKRITIK PAINT MACHINES</Link>
